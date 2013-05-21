@@ -35,4 +35,7 @@ src_install() {
 	cp ${S}/LICENSE.TXT .
 	cp ${FILESDIR}/config ${D}/etc/${NAME}
 	cp ${FILESDIR}/init.d/${NAME} ${D}/etc/init.d/
+
+	# Set more secure permissions
+	chmod 744 btsync
 }
