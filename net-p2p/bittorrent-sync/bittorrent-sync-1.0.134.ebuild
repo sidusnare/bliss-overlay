@@ -1,7 +1,7 @@
 # Copyright (C) 2013 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the Simplified BSD License.
 
-EAPI=4
+EAPI="4"
 
 NAME="btsync"
 DESCRIPTION="Automatically sync files via secure, distributed technology."

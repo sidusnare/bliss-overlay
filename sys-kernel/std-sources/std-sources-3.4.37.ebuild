@@ -1,9 +1,11 @@
-# Distributed under the terms of the GNU General Public License v2
+# Copyright (C) 2013 Jonathan Vasquez <jvasquez1011@gmail.com>
+# Distributed under the terms of the Simplified BSD License.
 
-EAPI="5"
+EAPI="4"
 
 inherit eutils
 
+# For System Rescue CD 3.5.0
 DESCRIPTION="Kernel Sources for System Rescue CD + Patches"
 HOMEPAGE="http://kernel.sysresccd.org/"
 SRC_URI="http://www.kernel.org/pub/linux/kernel/v3.x/linux-3.4.tar.bz2"
