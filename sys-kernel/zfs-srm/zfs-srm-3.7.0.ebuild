@@ -3,9 +3,11 @@
 
 EAPI="4"
 
+ZOLVER="0.6.1"
+
 DESCRIPTION="Prebuilt ZFS System Rescue Module for System Rescue CD"
 HOMEPAGE="http://jonathanvasquez.com/"
-SRC_URI="http://jonathanvasquez.com/files/sysresccd/${PV}/srms/zfs-srms-${PV}_amd64_0.6.1.tar.bz2"
+SRC_URI="http://jonathanvasquez.com/files/sysresccd/${PV}/srms/zfs-srms-${PV}_amd64_${ZOLVER}.tar.bz2"
 
 RESTRICT="mirror"
 LICENSE="BSD"

@@ -46,7 +46,14 @@ src_install()
 	mv ${S} ${D}/usr/src
 	cd ${D}/usr/src/${KERNEL} && make distclean
 	cp ${FILESDIR}/${PV}/${KERNEL_CONF} .config
+
+	# Change local version
 	sed -i -e "s%CONFIG_LOCALVERSION=\"\"%CONFIG_LOCALVERSION=\"-${TAIL}\"%" .config
+
+	# Remove old initramfs path crap
 	sed -i -e "s%CONFIG_INITRAMFS_SOURCE=\"/var/tmp/genkernel/initramfs-${PV}-${TAIL}.cpio\"%CONFIG_INITRAMFS_SOURCE=\"\"%" .config
+
+	# Set CONFIG_USER_NS (User Namespaces) to no
+	sed -i -e "s%CONFIG_USER_NS=y%CONFIG_USER_NS=n%" .config
 }
 
