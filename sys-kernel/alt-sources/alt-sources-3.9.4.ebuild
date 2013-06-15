@@ -19,7 +19,7 @@ SRC_URI="http://www.kernel.org/pub/linux/kernel/v3.x/${KERNEL_FILE}"
 RESTRICT="mirror"
 LICENSE="GPL-2"
 SLOT="${PV}"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 
 S="${WORKDIR}/${KERNEL}"
 

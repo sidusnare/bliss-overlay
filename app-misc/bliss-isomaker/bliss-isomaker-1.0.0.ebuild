@@ -14,7 +14,7 @@ SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/${GITHUB_TAG}.
 RESTRICT="mirror"
 LICENSE="BSD"
 SLOT="${PV}"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 IUSE="+iso"
 
 RDEPEND="iso? ( dev-libs/libisoburn )"

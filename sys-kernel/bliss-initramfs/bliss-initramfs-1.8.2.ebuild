@@ -14,7 +14,7 @@ SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/${GITHUB_TAG}.
 RESTRICT="mirror"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 IUSE="srm luks"
 
 RDEPEND="

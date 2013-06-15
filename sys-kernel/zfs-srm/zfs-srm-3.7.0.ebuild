@@ -12,7 +12,7 @@ SRC_URI="http://jonathanvasquez.com/files/sysresccd/${PV}/srms/zfs-srms-${PV}_am
 RESTRICT="mirror"
 LICENSE="BSD"
 SLOT="${PV}"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 IUSE=""
 
 RDEPEND="app-misc/bliss-isomaker"
