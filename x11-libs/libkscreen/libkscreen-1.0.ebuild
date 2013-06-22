@@ -16,7 +16,8 @@ RDEPEND="${DEPEND}"
 
 src_compile()
 {
-	cmake ${S} || die "Could not configure cmake stuff"
+	cmake \
+	 	-DCMAKE_INSTALL_PREFIX:PATH=/usr ${S} || die "Could not configure ${PN} with cmake."
 	emake
 }
 
