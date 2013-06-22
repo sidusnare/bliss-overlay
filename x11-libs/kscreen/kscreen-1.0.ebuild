@@ -1,4 +1,5 @@
-# Distributed under the terms of the GNU General Public License v2
+# Copyright (C) 2013 Jonathan Vasquez <jvasquez1011@gmail.com>
+# Distributed under the terms of the Simplified BSD License.
 
 EAPI="4"
 
