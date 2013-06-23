@@ -14,17 +14,20 @@ SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/${GITHUB_TAG}.
 RESTRICT="mirror"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 IUSE="srm luks"
 
 RDEPEND="
 	app-arch/cpio
+	app-editors/nano
 	sys-apps/busybox
 	sys-kernel/spl
 	sys-fs/zfs
 	sys-fs/zfs-kmod
+	sys-apps/kmod
 	srm? ( sys-fs/squashfs-tools )
-	luks? ( sys-fs/cryptsetup )"
+	luks? ( sys-fs/cryptsetup 
+			app-crypt/gnupg )"
 
 src_unpack() {
 	unpack ${A}
