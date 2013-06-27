@@ -9,8 +9,7 @@ REV="FB.01"
 
 DESCRIPTION="The kernel headers for bliss-kernel. Enables you to build external modules."
 HOMEPAGE="http://funtoo.org/"
-#SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/bliss-kernel/${PV}-${REV}/headers-${PV}-${REV}.tar.bz2"
-SRC_URI="http://jonathanvasquez.com/files/bliss-kernel/${PV}-${REV}/headers-${PV}-${REV}.tar.bz2"
+SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/bliss-kernel/${PV}-${REV}/headers-${PV}-${REV}.tar.bz2"
 
 RESTRICT="mirror strip"
 LICENSE="GPL-2"
