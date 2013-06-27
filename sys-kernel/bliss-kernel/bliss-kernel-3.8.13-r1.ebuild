@@ -9,14 +9,16 @@ REV="FB.01"
 
 DESCRIPTION="Precompiled ${PV}: Kernel + Modules"
 HOMEPAGE="http://funtoo.org/"
-SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/${PN}/${PV}-${REV}/kernel-${PV}-${REV}.tar.bz2"
+#SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/${PN}/${PV}-${REV}/kernel-${PV}-${REV}.tar.bz2"
+SRC_URI="http://jonathanvasquez.com/files/${PN}/${PV}-${REV}/kernel-${PV}-${REV}.tar.bz2"
 
 RESTRICT="mirror binchecks strip"
 LICENSE="GPL-2"
 SLOT="${PV}"
 KEYWORDS="~amd64"
 
-DEPEND="=sys-kernel/bliss-sources-${PV}"
+DEPEND="=sys-kernel/bliss-headers-${PV}
+		=sys-kernel/bliss-firmware-${PV}"
 
 S="${WORKDIR}"
 
