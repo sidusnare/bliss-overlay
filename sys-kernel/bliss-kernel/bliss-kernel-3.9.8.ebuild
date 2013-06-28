@@ -16,8 +16,7 @@ LICENSE="GPL-2"
 SLOT="${PV}"
 KEYWORDS="~amd64"
 
-DEPEND="=sys-kernel/bliss-headers-${PV}
-		=sys-kernel/bliss-firmware-${PV}"
+DEPEND="=sys-kernel/bliss-headers-${PV}"
 
 S="${WORKDIR}"
 
