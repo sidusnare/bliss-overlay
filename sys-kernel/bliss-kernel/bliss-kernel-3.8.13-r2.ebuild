@@ -7,14 +7,16 @@ inherit eutils
 
 REV="FB.01"
 
-DESCRIPTION="The firmware files for bliss-kernel."
+DESCRIPTION="Precompiled ${PV}: Kernel + Modules"
 HOMEPAGE="http://funtoo.org/"
-SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/bliss-kernel/${PV}-${REV}/firmware-${PV}-${REV}.tar.bz2"
+SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/${PN}/${PV}-${REV}/kernel-${PV}-${REV}.tar.bz2"
 
-RESTRICT="mirror strip"
+RESTRICT="mirror binchecks strip"
 LICENSE="GPL-2"
 SLOT="${PV}"
 KEYWORDS="~amd64"
+
+DEPEND="=sys-kernel/bliss-headers-${PV}"
 
 S="${WORKDIR}"
 
@@ -25,6 +27,9 @@ src_compile() {
 
 src_install()
 {
-	mkdir -p ${D}/lib/firmware
-	cp -r ${S}/firmware/* ${D}/lib/firmware
+	mkdir ${D}/boot/
+	cp -r ${S}/kernel/* ${D}/boot/
+
+	mkdir -p ${D}/lib/modules/
+	cp -r ${S}/modules/* ${D}/lib/modules/
 }
