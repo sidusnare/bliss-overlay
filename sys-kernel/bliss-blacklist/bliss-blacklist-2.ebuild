@@ -6,11 +6,8 @@ EAPI="4"
 inherit eutils
 
 # Other Variables
-_REAL="/lib/modprobe.d"
+_REAL="/etc/modprobe.d"
 _TMP="${_REAL}/saved"
-_C="usb-load-ehci-first.conf"
-_USB="${_REAL}/${_C}"
-_USB_S="${_TMP}/${_C}"
 
 # Main
 DESCRIPTION="Blacklist files that bliss-kernel(s) will use to enhance stability."
@@ -31,37 +28,33 @@ src_compile() {
 
 src_install()
 {
-	mkdir -p ${D}/lib/modprobe.d/
-	cp -r ${S}/blacklist/* ${D}/lib/modprobe.d/
+	mkdir -p ${D}/etc/modprobe.d/
+	cp -r ${S}/blacklist/* ${D}/etc/modprobe.d/
 }
 
-pkg_postinst()
+pkg_preinst()
 {
-	# Back up the default usb-load-ehci-first config because now we will be
-	# using the usb-controller.conf which is exactly the same thing.
-	if [ -f "${_USB}" ]; then
+	# Backup the old blacklist files
+	if [ ! -d "${_TMP}" ]; then
+		mkdir ${_TMP}
+
 		if [ ! -d "${_TMP}" ]; then
-			mkdir ${_TMP}
-
-			if [ ! -d "${_TMP}" ]; then
-				die "Could not create ${_TMP} directory"
-			fi
-
-			mv ${_USB} ${_TMP}
+			die "Could not create ${_TMP} directory"
 		fi
+
+		mv ${_REAL}/*.conf ${_TMP}
 	fi
 }
+
 pkg_postrm()
 {
 	# Restore the original file since we no longer have the bliss-kernel files.
-	if [ ! -f "${_USB}" ]; then
-		if [ -d "${_TMP}" ]; then
-			mv ${_USB_S} ${_REAL}
-			rmdir ${_TMP}
+	if [ -d "${_TMP}" ]; then
+		mv ${_TMP}/*.conf ${_REAL}
+		rmdir ${_TMP}
 
-			if [ -d "${_TMP}" ]; then
-				die "Could not remove ${_TMP} directory"
-			fi
+		if [ -d "${_TMP}" ]; then
+			die "Could not remove ${_TMP} directory"
 		fi
 	fi
 }

@@ -21,8 +21,8 @@ LICENSE="GPL-2"
 SLOT="${PV}-${LV}"
 KEYWORDS="~amd64"
 
-DEPEND="=sys-kernel/bliss-headers-${PV}-${PR}"
-RDEPEND="=sys-kernel/bliss-blacklist-1-r1"
+DEPEND="=sys-kernel/bliss-headers-${PVR}"
+RDEPEND="sys-kernel/bliss-blacklist"
 
 S="${WORKDIR}"
 
