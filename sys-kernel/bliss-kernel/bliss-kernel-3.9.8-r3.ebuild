@@ -6,7 +6,7 @@ EAPI="4"
 inherit eutils mount-boot
 
 # Local Version
-LV="FB.02"
+LV="FB.03"
 
 # Other Variables
 _M="/lib/modules/${PV}-${LV}"

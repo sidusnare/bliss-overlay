@@ -6,7 +6,7 @@ EAPI="4"
 inherit eutils
 
 # Local Version
-LV="FB.02"
+LV="FB.03"
 
 # Other Variables
 _K="/usr/src/linux-${PV}-${LV}"
