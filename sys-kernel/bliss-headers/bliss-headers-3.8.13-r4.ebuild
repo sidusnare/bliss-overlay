@@ -29,8 +29,8 @@ src_compile() {
 
 src_install()
 {
-	mkdir -p ${D}/usr/src/
-	cp -r ${S}/headers/* ${D}/usr/src/
+	dodir /usr/src/
+	cp -R ${S}/headers/* ${D}/usr/src/
 }
 
 pkg_postinst()

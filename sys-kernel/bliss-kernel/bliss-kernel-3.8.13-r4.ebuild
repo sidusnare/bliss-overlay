@@ -33,11 +33,11 @@ src_compile() {
 
 src_install()
 {
-	mkdir ${D}/boot/
-	cp -r ${S}/kernel/* ${D}/boot/
+	dodir /boot/
+	cp -R ${S}/kernel/* ${D}/boot/
 
-	mkdir -p ${D}/lib/modules/
-	cp -r ${S}/modules/* ${D}/lib/modules/
+	dodir /lib/modules/
+	cp -R ${S}/modules/* ${D}/lib/modules/
 }
 
 pkg_postrm()
