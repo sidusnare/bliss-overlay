@@ -17,7 +17,7 @@ SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/bliss-kernel/${PV}-${LV}/hea
 
 RESTRICT="mirror strip"
 LICENSE="GPL-2"
-SLOT="${PV}"
+SLOT="${PV}-${LV}"
 KEYWORDS="~amd64"
 
 S="${WORKDIR}"

@@ -6,7 +6,6 @@ EAPI="4"
 inherit eutils
 
 # Other Variables
-_M="/lib/modules/${PV}-${LV}"
 _REAL="/lib/modprobe.d"
 _TMP="${_REAL}/saved"
 _C="usb-load-ehci-first.conf"
@@ -16,7 +15,7 @@ _USB_S="${_TMP}/${_C}"
 # Main
 DESCRIPTION="Blacklist files that bliss-kernel(s) will use to enhance stability."
 HOMEPAGE="http://funtoo.org/"
-SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/bliss-kernel/${PN}-${PV}.tar.bz2"
+SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/bliss-kernel/${P}.tar.bz2"
 
 RESTRICT="mirror"
 LICENSE="GPL-2"

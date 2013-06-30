@@ -18,11 +18,11 @@ SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/${PN}/${PV}-${LV}/kernel-${P
 
 RESTRICT="mirror binchecks strip"
 LICENSE="GPL-2"
-SLOT="${PV}"
+SLOT="${PV}-${LV}"
 KEYWORDS="~amd64"
 
 DEPEND="=sys-kernel/bliss-headers-${PV}-${PR}"
-RDEPEND="=sys-kernel/bliss-blacklist-1"
+RDEPEND="=sys-kernel/bliss-blacklist-1-r1"
 
 S="${WORKDIR}"
 
