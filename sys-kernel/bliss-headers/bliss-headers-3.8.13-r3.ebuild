@@ -5,11 +5,15 @@ EAPI="4"
 
 inherit eutils
 
-REV="FB.01"
+# Local Version
+LV="FB.02"
+
+# Other Variables
+_K="/usr/src/linux-${PV}-${LV}"
 
 DESCRIPTION="The kernel headers for bliss-kernel. Enables you to build external modules."
 HOMEPAGE="http://funtoo.org/"
-SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/bliss-kernel/${PV}-${REV}/headers-${PV}-${REV}.tar.bz2"
+SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/bliss-kernel/${PV}-${LV}/headers-${PV}-${LV}.tar.bz2"
 
 RESTRICT="mirror strip"
 LICENSE="GPL-2"
@@ -31,5 +35,14 @@ src_install()
 
 pkg_postinst()
 {
-	eselect kernel set linux-${PV}-${REV}
+	# Set the kernel symlink
+	eselect kernel set linux-${PV}-${LV}
+}
+
+pkg_postrm()
+{
+	# Check to see if the kernel directory was removed
+	if [ -d "${_K}" ]; then
+		rm -rf ${_K}
+	fi
 }

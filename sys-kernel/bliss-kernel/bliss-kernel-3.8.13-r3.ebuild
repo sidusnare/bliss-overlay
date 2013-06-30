@@ -3,20 +3,26 @@
 
 EAPI="4"
 
-inherit eutils
+inherit eutils mount-boot
 
-REV="FB.01"
+# Local Version
+LV="FB.02"
 
+# Other Variables
+_M="/lib/modules/${PV}-${LV}"
+
+# Main
 DESCRIPTION="Precompiled ${PV}: Kernel + Modules"
 HOMEPAGE="http://funtoo.org/"
-SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/${PN}/${PV}-${REV}/kernel-${PV}-${REV}.tar.bz2"
+SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/${PN}/${PV}-${LV}/kernel-${PV}-${LV}.tar.bz2"
 
 RESTRICT="mirror binchecks strip"
 LICENSE="GPL-2"
 SLOT="${PV}"
 KEYWORDS="~amd64"
 
-DEPEND="=sys-kernel/bliss-headers-${PV}"
+DEPEND="=sys-kernel/bliss-headers-${PV}-${PR}"
+RDEPEND="=sys-kernel/bliss-blacklist-1"
 
 S="${WORKDIR}"
 
@@ -32,4 +38,12 @@ src_install()
 
 	mkdir -p ${D}/lib/modules/
 	cp -r ${S}/modules/* ${D}/lib/modules/
+}
+
+pkg_postrm()
+{
+	# Check to see if the modules directory was removed
+	if [ -d "${_M}" ]; then
+		rm -rf ${_M}
+	fi
 }
