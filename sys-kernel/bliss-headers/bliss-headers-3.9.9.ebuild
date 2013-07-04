@@ -12,7 +12,7 @@ _KN="linux-${PV}-${_LV}"		# Kernel Directory Name
 _KD="${_KP}/${_KN}"				# Kernel Directory
 _R="${RANDOM}"					# Random Number for Backup
 
-DESCRIPTION="The kernel headers for bliss-kernel. Enables you to build external modules."
+DESCRIPTION="Kernel headers for bliss-kernel. Enables you to build external modules."
 HOMEPAGE="http://funtoo.org/"
 SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/bliss-kernel/${PV}-${_LV}/headers-${PV}-${_LV}.tar.bz2"
 

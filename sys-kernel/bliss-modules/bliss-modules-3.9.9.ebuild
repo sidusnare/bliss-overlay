@@ -15,7 +15,7 @@ _R="${RANDOM}"					# Random Number for Backup
 # Main
 DESCRIPTION="Precompiled Vanilla Modules"
 HOMEPAGE="http://funtoo.org/"
-SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/${PN}/${PV}-${_LV}/modules-${PV}-${_LV}.tar.bz2"
+SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/bliss-kernel/${PV}-${_LV}/modules-${PV}-${_LV}.tar.bz2"
 
 RESTRICT="mirror strip"
 LICENSE="GPL-2"
