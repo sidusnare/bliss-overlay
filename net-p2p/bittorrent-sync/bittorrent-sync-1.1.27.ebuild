@@ -37,3 +37,15 @@ src_install() {
 	# Set more secure permissions
 	chmod 755 ${D}/etc/init.d/btsync
 }
+
+pkg_postinst() {
+	ewarn "This version contains major protocol and feature updates, including:"
+	ewarn "- versioning"
+	ewarn "- significant performance and memory usage improvements"
+	ewarn "- bug fixes"
+	ewarn ""
+	ewarn "Important:"
+	ewarn "- BitTorrent Sync 1.1.27 is not compatible with versions earlier than 1.1.25"
+	ewarn "- Sync folders may be re-indexed at startup"
+	ewarn "- Please make sure all your folders are in sync before performing upgrade"
+}
