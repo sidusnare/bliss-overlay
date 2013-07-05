@@ -38,8 +38,8 @@ src_install()
 
 pkg_postinst()
 {
-	# Set the kernel symlink if symlink use is set
-	if use symlink ; then
+	# Set the kernel symlink if symlink use is set or it doesn't exist
+	if use symlink || [ ! -h "${_KP}/linux" ]; then
 		eselect kernel set ${_KN}
 	fi
 }
