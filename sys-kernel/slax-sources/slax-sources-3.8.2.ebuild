@@ -11,6 +11,8 @@ KERNEL="linux-${PV}-${TAIL}"
 KERNEL_CONF="config-${PV}"
 KERNEL_FILE="linux-3.8.tar.bz2"
 KERNEL_PATCH="patch-${PV}.xz"
+AD="aufs3-standalone.git"				# AUFS Directory
+AT="origin/aufs3.8"						# AUFS Target
 
 DESCRIPTION="Kernel Sources and Patches for the Slax 7.0.8 x86_64"
 HOMEPAGE="http://kernel.sysresccd.org/"
@@ -21,20 +23,26 @@ LICENSE="GPL-2"
 SLOT="${PV}"
 KEYWORDS="amd64"
 
+DEPEND="dev-vcs/git"
+
 S="${WORKDIR}/${KERNEL}"
 
 src_unpack()
 {
 	unpack ${KERNEL_FILE}
 	mv ${KERNEL_FILE%.tar*} ${KERNEL}
+
+	# Get latest AUFS for this kernel
+	git clone git://git.code.sf.net/p/aufs/aufs3-standalone ${AD}
+	cd ${AD} && git checkout -b funtoo ${AT}
 }
 
 src_prepare()
 {
 	epatch "${FILESDIR}/${PV}/${KERNEL_PATCH}" || die "Failed to apply ${PV} patch"
-	epatch "${FILESDIR}/${PV}/aufs/aufs3-kbuild.patch" || die "Failed to apply aufs3-kbuild.patch"
-	epatch "${FILESDIR}/${PV}/aufs/aufs3-base.patch" || die "Failed to apply aufs3-base.patch"
-	epatch "${FILESDIR}/${PV}/aufs/aufs3-proc_map.patch" || die "Failed to apply aufs3-proc_map.patch"
+	epatch "${WORKDIR}/${AD}/aufs3-kbuild.patch" || die "Failed to apply aufs3-kbuild.patch"
+	epatch "${WORKDIR}/${AD}/aufs3-base.patch" || die "Failed to apply aufs3-base.patch"
+	epatch "${WORKDIR}/${AD}/aufs3-proc_map.patch" || die "Failed to apply aufs3-proc_map.patch"
 }
 
 src_compile() {
@@ -44,18 +52,18 @@ src_compile() {
 
 src_install()
 {
-	mkdir -p ${D}/usr/src
-	mv ${S} ${D}/usr/src
-	cd ${D}/usr/src/${KERNEL} && make distclean
+	dodir /usr/src
+	cp -r ${S} ${D}/usr/src
 
-	einfo "Copying Documentation and FS"
-	cp -rv ${FILESDIR}/${PV}/aufs/Documentation .
-	cp -rv ${FILESDIR}/${PV}/aufs/fs .
+	cd ${D}/usr/src/${KERNEL}
 
-	einfo "Copying AUFS_TYPE"
-	cp ${FILESDIR}/${PV}/aufs/include/uapi/linux/aufs_type.h include/linux/
+	# Copying Documentation and FS
+	cp -r ${WORKDIR}/${AD}/Documentation .
+	cp -r ${WORKDIR}/${AD}/fs .
 
-	einfo "Copying kernel config"
+	# Copying AUFS_TYPE
+	cp ${WORKDIR}/${AD}/include/uapi/linux/aufs_type.h include/linux/
+
+	# Copying kernel config
 	cp ${FILESDIR}/${PV}/${KERNEL_CONF} .config
 }
-
