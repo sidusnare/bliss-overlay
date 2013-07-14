@@ -1,5 +1,5 @@
 # Copyright (C) 2013 Jonathan Vasquez <jvasquez1011@gmail.com>
-# Distributed under the terms of the Simplified BSD License.
+# Distributed under the terms of the GNU General Public License v2
 
 EAPI="4"
 
@@ -12,7 +12,7 @@ HOMEPAGE="https://github.com/${GITHUB_USER}/${GITHUB_REPO}"
 SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/${GITHUB_TAG}.tar.gz -> ${P}.tar.gz"
 
 RESTRICT="mirror strip"
-LICENSE="MPL-2.0"
+LICENSE="GPL-2.0"
 SLOT="0"
 KEYWORDS="amd64"
 IUSE="luks"
