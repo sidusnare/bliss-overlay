@@ -1,17 +1,17 @@
 # Copyright (C) 2013 Jonathan Vasquez <jvasquez1011@gmail.com>
-# Distributed under the terms of the Simplified BSD License.
+# Distributed under the terms of the GNU General Public License v2
 
 EAPI="4"
 
 inherit eutils mount-boot
 
 # Variables
-_LV="FB.02"						# Local Version
+_LV="FB.01"						# Local Version
 _PLV="${PV}-${_LV}"				# Package Version + Local Version (Module Dir)
 _MD="/lib/modules/${_PLV}"		# Modules Directory
 _KN="linux-${_PLV}"				# Kernel Directory Name
 _KD="/usr/src/${_KN}"			# Kernel Directory
-_CONF="bliss.conf"				# Blacklist
+_CONF="bliss.conf"				# Blacklisted Kernel Modules
 
 # Modules Link
 _MOD_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/${PN}/${_PLV}/modules-${_PLV}.tar.bz2"
@@ -58,7 +58,7 @@ pkg_preinst()
 	# This has the effect of portage not wanting to re-emerge the old bliss-modules
 	# package every single time you do emerge @module-rebuild.
 
-	# Name of folder that will hold bliss-modules
+	# Name of folder that will hold the bliss kernel modules
 	local _F="bliss-kernel"
 
 	cd /usr/src/ || die "Cannot change into /usr/src directory!"
@@ -103,7 +103,7 @@ pkg_postinst()
 		eselect kernel set ${_KN}
 	fi
 
-	# Delete the extract modules directory in /usr/src/bliss-kernel
+	# Delete the extracted modules directory in /usr/src/bliss-kernel
 	if [[ -d /usr/src/bliss-kernel/modules ]]; then
 		rm -rf /usr/src/bliss-kernel/modules
 	fi
