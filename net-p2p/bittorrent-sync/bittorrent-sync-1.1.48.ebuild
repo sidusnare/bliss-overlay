@@ -1,5 +1,5 @@
 # Copyright (C) 2013 Jonathan Vasquez <jvasquez1011@gmail.com>
-# Distributed under the terms of the Simplified BSD License.
+# Distributed under the terms of the GNU General Public License v2
 
 EAPI="4"
 
@@ -15,7 +15,7 @@ SRC_URI="
 RESTRICT="mirror strip"
 LICENSE="BitTorrent"
 SLOT="0"
-KEYWORDS="amd64 x86 ~arm ~ppc"
+KEYWORDS="amd64 ~x86 ~arm ~ppc"
 IUSE=""
 
 DEPEND=""
