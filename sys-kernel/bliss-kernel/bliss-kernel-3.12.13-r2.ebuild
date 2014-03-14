@@ -16,7 +16,7 @@ _BD="/boot/kernels/${_PLV}"     # Kernel /boot Directory
 # Main
 DESCRIPTION="Precompiled Vanilla Kernel (Kernel Ready-to-Eat [KRE])"
 HOMEPAGE="http://fearedbliss.com/"
-SRC_URI="http://fearedbliss.com/funtoo/kernels/${_PLV}/kernel-${_PLV}.tar.xz"
+SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/${PN}/${_PLV}/kernel-${_PLV}.tar.xz"
 
 RESTRICT="mirror strip"
 LICENSE="GPL-2"
