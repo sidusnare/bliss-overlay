@@ -1,4 +1,4 @@
-# Copyright (C) 2013 Jonathan Vasquez <fearedbliss@funtoo.org>
+# Copyright (C) 2014 Jonathan Vasquez <fearedbliss@funtoo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="4"
