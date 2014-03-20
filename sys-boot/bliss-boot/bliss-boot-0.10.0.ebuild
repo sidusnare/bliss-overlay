@@ -1,4 +1,4 @@
-# Copyright (C) 2014 Jonathan Vasquez <fearedbliss@funtoo.org>
+# Copyright (C) 2014 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="4"
@@ -15,13 +15,13 @@ RESTRICT="mirror strip"
 LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="grub2 extlinux lilo"
+IUSE="grub2 extlinux gpt"
 
 RDEPEND="
 	>=dev-lang/python-3.3
 	grub2? ( >=sys-boot/grub-2.00-r7 )
 	extlinux? ( sys-boot/syslinux )
-	lilo? ( sys-boot/lilo )"
+	gpt? ( sys-apps/gptfdisk )"
 
 src_install() {
 	# Copy the main files
