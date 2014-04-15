@@ -1,16 +1,16 @@
-# Copyright 2013-2014 Jonathan Vasquez <jvasquez1011@gmail.com>
+# Copyright 2014 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="4"
 
 inherit eutils
 
-# For System Rescue CD 4.0.1 (Alternate Kernel)
-TAIL="alt401-amd64"
+# For System Rescue CD 4.1.0 (Standard Kernel - x86_64)
+TAIL="std410-amd64"
 KERNEL="linux-${PV}-${TAIL}"
 KERNEL_CONF="kernel-${PV}-${TAIL}.conf"
-KV="3.12"
-KERNEL_FILE="linux-${KV}.tar.bz2"
+KV="3.10"
+KERNEL_FILE="linux-${KV}.tar.xz"
 
 DESCRIPTION="Kernel Sources and Patches for the System Rescue CD Alternate Kernel"
 HOMEPAGE="http://kernel.sysresccd.org/"
@@ -32,7 +32,7 @@ src_unpack()
 src_prepare()
 {
 	epatch ${FILESDIR}/${PV}/${PN}-${KV}-01-stable-${PV}.patch.xz || die "alt-sources stable patch failed."
-	epatch ${FILESDIR}/${PV}/${PN}-${KV}-02-fc19.patch.xz || die "alt-sources fedora patch failed."
+	epatch ${FILESDIR}/${PV}/${PN}-${KV}-02-fc18.patch.xz || die "alt-sources fedora patch failed."
 	epatch ${FILESDIR}/${PV}/${PN}-${KV}-03-aufs.patch.xz || die "alt-sources aufs patch failed."
 	epatch ${FILESDIR}/${PV}/${PN}-${KV}-04-reiser4.patch.xz || die "alt-sources reiser4 patch failed."
 }

@@ -1,4 +1,4 @@
-# Copyright (C) 2013-2014 Jonathan Vasquez <fearedbliss@funtoo.org>
+# Copyright 2013-2014 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="4"
@@ -10,13 +10,13 @@ _LV="KS.01"                     # Local Version
 _PLV="${PV}-${_LV}"             # Package Version + Local Version (Module Dir)
 _KN="linux-${_PLV}"             # Kernel Directory Name
 _KD="/usr/src/${_KN}"           # Kernel Directory
-_CONF="chinchilla.conf"         # Blacklisted Kernel Modules
+_CONF="xyinn.conf"				# Blacklisted Kernel Modules
 _BD="/boot/kernels/${_PLV}"     # Kernel /boot Directory
 
 # Main
 DESCRIPTION="Precompiled Vanilla Kernel (Kernel Ready-to-Eat [KRE])"
-HOMEPAGE="http://fearedbliss.com/"
-SRC_URI="http://ftp.osuosl.org/pub/funtoo/distfiles/${PN}/${_PLV}/kernel-${_PLV}.tar.xz"
+HOMEPAGE="http://xyinn.org/"
+SRC_URI="http://xyinn.org/gentoo/kernels/${_PLV}/kernel-${_PLV}.tar.xz"
 
 RESTRICT="mirror strip"
 LICENSE="GPL-2"

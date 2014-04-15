@@ -5,12 +5,12 @@ EAPI="4"
 
 inherit eutils
 
-# For System Rescue CD 4.0.1 (Alternate Kernel)
-TAIL="alt401-amd64"
+# For System Rescue CD 4.1.0 (Alternate Kernel - x86_64)
+TAIL="alt410-amd64"
 KERNEL="linux-${PV}-${TAIL}"
 KERNEL_CONF="kernel-${PV}-${TAIL}.conf"
-KV="3.12"
-KERNEL_FILE="linux-${KV}.tar.bz2"
+KV="3.13"
+KERNEL_FILE="linux-${KV}.tar.xz"
 
 DESCRIPTION="Kernel Sources and Patches for the System Rescue CD Alternate Kernel"
 HOMEPAGE="http://kernel.sysresccd.org/"

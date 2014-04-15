@@ -1,4 +1,4 @@
-# Copyright (C) 2014 Jonathan Vasquez <jvasquez1011@gmail.com>
+# Copyright 2014 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="4"

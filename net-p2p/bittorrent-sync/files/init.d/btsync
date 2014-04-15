@@ -1,6 +1,7 @@
 #!/sbin/runscript
-# Copyright (C) 2013-2014 Jonathan Vasquez <fearedbliss@funtoo.org>
-# Distributed under the terms of the Simplified BSD License.
+
+# Copyright 2013-2014 Jonathan Vasquez <jvasquez1011@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
 
 NAME="BitTorrent Sync"
 SYNC_NAME="btsync"
