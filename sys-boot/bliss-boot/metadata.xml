@@ -6,8 +6,8 @@
 		<name>Jonathan Vasquez</name>
     </maintainer>                                                                                                                                                  
     <use>                                                                                                                                                          
-		<flag name="grub2">Pulls in GRUB 2</flag>
-		<flag name="extlinux">Pulls in extlinux</flag>
-		<flag name="gpt">Pulls in gptfdisk which will assist with GPT operations</flag>
+		<flag name="grub2">GRUB 2 support</flag>
+		<flag name="extlinux">Extlinux support</flag>
+		<flag name="gpt">Ability to create, delete, and/or modify a GPT layout.</flag>
     </use>                                                                                                                                                         
 </pkgmetadata>
