@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>                                                                                                                             
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">                                                                                             
+<pkgmetadata>                                                                                                                                                      
+    <maintainer>                                                                                                                                                   
+		<email>jvasquez1011@gmail.com</email>
+		<name>Jonathan Vasquez</name>
+    </maintainer>                                                                                                                                                  
+    <use>                                                                                                                                                          
+		<flag name="grub2">Pulls in GRUB 2</flag>
+		<flag name="extlinux">Pulls in extlinux</flag>
+		<flag name="gpt">Pulls in gptfdisk which will assist with GPT operations</flag>
+    </use>                                                                                                                                                         
+</pkgmetadata>
