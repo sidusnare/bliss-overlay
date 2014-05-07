@@ -1,7 +1,7 @@
 # Copyright 2013-2014 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="4"
+EAPI="5"
 
 GITHUB_USER="fearedbliss"
 GITHUB_REPO="Bliss-Initramfs-Creator"
@@ -12,9 +12,9 @@ HOMEPAGE="https://github.com/${GITHUB_USER}/${GITHUB_REPO}"
 SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/${GITHUB_TAG}.tar.gz -> ${P}.tar.gz"
 
 RESTRICT="mirror strip"
-LICENSE="Apache-2.0"
+LICENSE="MPL-2.0"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="-* ~amd64"
 IUSE="zfs raid lvm luks"
 
 RDEPEND="
@@ -32,17 +32,23 @@ RDEPEND="
 
 	lvm? ( sys-fs/lvm2 )
 
-	luks? ( sys-fs/cryptsetup 
+	luks? ( sys-fs/cryptsetup
 			app-crypt/gnupg )"
 
 S="${WORKDIR}/${GITHUB_REPO}-${GITHUB_TAG}"
 
 src_install() {
-	# Copy the main files
-	mkdir -p ${D}/opt/${PN} && cd ${D}/opt/${PN}
-	cp -a ${S}/* .
+	# Copy the main executable
+	exeinto "/opt/${PN}"
+	doexe mkinitrd
 
-	# Make a symbolic link: /sbin/bliss-initramfs
-	mkdir -p ${D}/sbin && cd ${D}/sbin
-	ln -s ${D}opt/${PN}/mkinitrd ${PN}
+	# Copy the libraries required by this executable
+	cp -r "${S}/files" "${D}/opt/${PN}"
+	cp -r "${S}/pkg" "${D}/opt/${PN}"
+
+	# Copy documentation files
+	dodoc CHANGES README USAGE
+
+	# Make a symbolic link: /sbin/bliss-boot
+	dosym "/opt/${PN}/mkinitrd" "/sbin/${PN}"
 }
