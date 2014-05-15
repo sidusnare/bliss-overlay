@@ -28,28 +28,35 @@ S="${WORKDIR}"
 src_compile()
 {
 	# Unset ARCH so that you don't get Makefile not found messages
-	unset ARCH && return;
+	unset ARCH && return
 }
 
 src_install()
 {
 	# Install Kernel
-	mkdir -p ${D}/${_BD}
-	cp ${S}/kernel/System.map-${_PLV} ${D}/${_BD}/System.map
-	cp ${S}/kernel/vmlinuz-${_PLV} ${D}/${_BD}/vmlinuz
-	cp ${S}/kernel/config-${_PLV} ${D}/${_BD}/config
+	insinto "${_BD}"
+
+	kfiles=(
+		"System.map-${_PLV}"
+		"vmlinuz-${_PLV}"
+		"config-${_PLV}"
+	)
+		
+	for file in ${kfiles[*]}; do
+		newins "${S}/kernel/${file}" "${file%%-*}"
+	done
 
 	# Install Modules
-	mkdir -p ${D}/lib/modules/
-	cp -r ${S}/modules/${_PLV} ${D}/lib/modules
+	dodir /lib/modules
+	cp -r "${S}/modules/${_PLV}" "${D}/lib/modules"
 
 	# Install Headers
-	mkdir -p ${D}/usr/src
-	cp -r ${S}/headers/${_KN} ${D}/usr/src
+	dodir /usr/src
+	cp -r "${S}/headers/${_KN}" "${D}/usr/src"
 
 	# Install Blacklist
-	mkdir -p ${D}/etc/modprobe.d/
-	cp ${S}/modules/${_CONF} ${D}/etc/modprobe.d/
+	insinto /etc/modprobe.d
+	doins "${S}/modules/${_CONF}"
 }
 
 pkg_postinst()
@@ -63,6 +70,6 @@ pkg_postinst()
 
 	if [[ ! -e "/usr/src/linux" ]]; then
 		einfo "Creating symlink to ${_KD}"
-		cd /usr/src && ln -s ${_KN} linux
+		cd /usr/src && ln -sf ${_KN} linux
 	fi
 }
