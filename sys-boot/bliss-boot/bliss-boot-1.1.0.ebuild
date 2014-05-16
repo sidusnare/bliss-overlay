@@ -12,7 +12,7 @@ HOMEPAGE="https://github.com/${GITHUB_USER}/${GITHUB_REPO}"
 SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/${GITHUB_TAG}.tar.gz -> ${P}.tar.gz"
 
 RESTRICT="mirror strip"
-LICENSE="Apache-2.0"
+LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE="grub2 extlinux gpt"
@@ -39,7 +39,7 @@ src_install() {
 
 	keepdir ${config}
 	insinto ${config}
-	doins "${S}/libs/conf.py"
+	doins "${S}/defaults/config.py"
 
 	# Make a symbolic link: /sbin/bliss-boot
 	dosym "/opt/${PN}/${PN}" "/sbin/${PN}"
