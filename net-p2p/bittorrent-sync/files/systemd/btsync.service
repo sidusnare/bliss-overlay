@@ -3,6 +3,7 @@
 
 [Unit]
 Description=BitTorrent Sync
+After=systemd-udev-settle.target local-fs.target zfs.service
 
 [Service]
 Type=forking
