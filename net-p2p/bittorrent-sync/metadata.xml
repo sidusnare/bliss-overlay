@@ -5,4 +5,7 @@
 		<email>jvasquez1011@gmail.com</email>
 		<name>Jonathan Vasquez</name>
     </maintainer>
+    <use>
+		<flag name="umask">Switches the system umask to 002</flag>
+    </use>
 </pkgmetadata>
