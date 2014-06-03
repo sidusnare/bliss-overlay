@@ -3,7 +3,7 @@
 
 EAPI=5
 
-inherit user
+inherit user systemd
 
 NAME="btsync"
 DESCRIPTION="Fast, unlimited and secure file-syncing. Free from the cloud."
@@ -34,6 +34,9 @@ src_install() {
 
 	# Install the OpenRC init file
 	doinitd "${FILESDIR}/init.d/${NAME}"
+
+	# Install the systemd unit file
+	systemd_dounit "${FILESDIR}/systemd/${NAME}.service"
 }
 
 pkg_postinst() {
