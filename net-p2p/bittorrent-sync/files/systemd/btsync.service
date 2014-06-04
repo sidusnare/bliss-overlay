@@ -6,6 +6,7 @@ Description=BitTorrent Sync
 After=systemd-udev-settle.target local-fs.target zfs.service
 
 [Service]
+UMask=002
 Type=forking
 ExecStart=/opt/btsync/btsync --config /etc/btsync/config
 

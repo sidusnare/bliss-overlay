@@ -13,8 +13,10 @@ SYNC_PIDFILE="/var/run/${SYNC_NAME}.pid"
 start() {
 	ebegin "Starting ${NAME}"
 
+	# Sets the umask for the process so that btsync creates files
+	# with group write permissions
 	start-stop-daemon --start --exec "${SYNC_BINARY}" \
-	   --pidfile "${SYNC_PIDFILE}" --background \
+	   --pidfile "${SYNC_PIDFILE}" --umask 002 --background \
 	   -- ${SYNC_OPTS}
 
 	eend $?

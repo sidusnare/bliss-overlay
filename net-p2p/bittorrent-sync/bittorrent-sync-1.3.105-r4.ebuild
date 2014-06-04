@@ -45,6 +45,15 @@ pkg_postinst() {
 	enewgroup btsync
 	enewuser btsync -1 /bin/bash /home/btsync "btsync"
 
+	# Path to 'btsync' executable
+	local btsexe="/opt/${NAME}/${NAME}"
+
+	# Set the daemon's group to 'btsync'
+	chown root:btsync "${btsexe}"
+
+	# Set guid so that files created under this process are created as the group
+	chmod 2775 "${btsexe}"
+
 	# Fixed home directory group permissions since it's currently btsync:root
 	chown :btsync /home/btsync
 
