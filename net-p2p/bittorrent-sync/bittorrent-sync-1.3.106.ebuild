@@ -45,49 +45,20 @@ pkg_postinst() {
 	enewgroup btsync
 	enewuser btsync -1 /bin/bash /home/btsync "btsync"
 
-	# Path to 'btsync' executable
-	local btsexe="/opt/${NAME}/${NAME}"
-
-	# Set the daemon's group to 'btsync'
-	chown root:btsync "${btsexe}"
-
-	# Set guid so that files created under this process are created as the group
-	chmod 2775 "${btsexe}"
-
-	# Fixed home directory group permissions since it's currently btsync:root
-	chown :btsync /home/btsync
-
-	# Fixed permissions since umask hasn't taken affect
-	chmod 2775 /home/btsync
-
 	# Create the .sync directory where sync metadata will be stored
 	mkdir /home/btsync/.sync
 
-	# Fix .sync directory ownership and permissions
-	chown btsync /home/btsync/.sync
-	chmod 2775 /home/btsync/.sync
+	# Fixed home directory group permissions since it's currently btsync:root
+	chown btsync:btsync /home/btsync
 
-	elog "In order for shared files between groups to be as easy as possible,"
-	elog "please switch your system umask from 022 to 002. This can be done by"
-	elog "modifying /etc/profile. The following command will do this for you:"
-	elog ""
-	elog "sed -i 's/umask 022/umask 002/' /etc/profile"
-	elog ""
-	elog "Then run . /etc/profile so that your new umask takes affect."
-	elog ""
-	elog "After this is done, you can add any users that need to modify files in"
-	elog "/home/btsync to your btsync group. To add your user to the btsync group,"
-	elog "do the following:"
-	elog ""
-	elog "gpasswd -a <your user> btsync"
+	# Fix .sync directory ownership
+	chown btsync:btsync /home/btsync/.sync
+
+	elog "In order for shared files between local users to be as easy as possible,"
+	elog "please set up ACLs on your system."
 	elog ""
 	elog "You will also need to configure btsync by editing /etc/btsync/config"
 	elog ""
 	elog "After checking your config, start the service and point your browser to"
 	elog "http://localhost:8888 , the default username and password is admin/admin."
-}
-
-pkg_postrm() {
-	elog "If you no longer need to have your system's umask set to 002,"
-	elog "Consider switching it back to the Gentoo default of 022 in /etc/profile"
 }
