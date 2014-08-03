@@ -40,19 +40,24 @@ src_install() {
 }
 
 pkg_postinst() {
+	local syncuser="btsync"
+	local syncdir="/home/${syncuser}"
+
 	# Let's set up the user and group for this daemon so that members of the group
 	# can have write permissions.
-	enewgroup btsync
-	enewuser btsync -1 /bin/bash /home/btsync "btsync"
+	enewgroup "${syncuser}"
+	enewuser "${syncuser}" -1 /bin/bash "${syncdir}" "${syncuser}"
 
-	# Create the .sync directory where sync metadata will be stored
-	mkdir /home/btsync/.sync
+	if [[ ! -d "${syncdir}" ]]; then
+		# Create the .sync directory where sync metadata will be stored
+		mkdir "${syncdir}/.sync"
 
-	# Fixed home directory group permissions since it's currently btsync:root
-	chown btsync:btsync /home/btsync
+		# Fixed home directory group permissions since it's currently btsync:root
+		chown ${syncuser}:${syncuser} "${syncdir}"
 
-	# Fix .sync directory ownership
-	chown btsync:btsync /home/btsync/.sync
+		# Fix .sync directory ownership
+		chown ${syncuser}:${syncuser} "${syncdir}/.sync"
+	fi
 
 	elog "In order for shared files between local users to be as easy as possible,"
 	elog "please set up ACLs on your system."
