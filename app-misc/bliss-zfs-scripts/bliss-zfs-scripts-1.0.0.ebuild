@@ -7,7 +7,7 @@ GITHUB_USER="fearedbliss"
 GITHUB_REPO="bliss-zfs-scripts"
 GITHUB_TAG="${PV}"
 
-DESCRIPTION="Bootloader Configuration and Installation Utility"
+DESCRIPTION="ZFS Snapshot & Backup Management Scripts"
 HOMEPAGE="https://github.com/${GITHUB_USER}/${GITHUB_REPO}"
 SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/${GITHUB_TAG}.tar.gz -> ${P}.tar.gz"
 
