@@ -4,10 +4,10 @@
 EAPI="5"
 
 GITHUB_USER="fearedbliss"
-GITHUB_REPO="Bliss-Initramfs-Creator"
+GITHUB_REPO="bliss-initramfs"
 GITHUB_TAG="${PV}"
 
-DESCRIPTION="Allows you to create multiple types of initramfs"
+DESCRIPTION="Allows you to boot your system's root filesystem installed on ZFS"
 HOMEPAGE="https://github.com/${GITHUB_USER}/${GITHUB_REPO}"
 SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/${GITHUB_TAG}.tar.gz -> ${P}.tar.gz"
 
@@ -27,10 +27,6 @@ RDEPEND="
 	zfs? ( sys-kernel/spl
 		   sys-fs/zfs
 	       sys-fs/zfs-kmod )
-
-	raid? ( sys-fs/mdadm )
-
-	lvm? ( sys-fs/lvm2 )
 
 	luks? ( sys-fs/cryptsetup
 			app-crypt/gnupg )"

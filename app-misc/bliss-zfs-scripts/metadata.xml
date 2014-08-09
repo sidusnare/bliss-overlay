@@ -5,8 +5,4 @@
 		<email>jvasquez1011@gmail.com</email>
 		<name>Jonathan Vasquez</name>
     </maintainer>
-    <use>
-		<flag name="zfs">ZFS support</flag>
-		<flag name="luks">Encryption support</flag>
-    </use>
 </pkgmetadata>
