@@ -1,7 +1,7 @@
 # Copyright 2013-2014 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI=5
 
 GITHUB_USER="fearedbliss"
 GITHUB_REPO="bliss-initramfs"
@@ -15,7 +15,7 @@ RESTRICT="mirror strip"
 LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="-* ~amd64"
-IUSE="zfs raid lvm luks"
+IUSE="zfs luks"
 
 RDEPEND="
 	>=dev-lang/python-3.3
@@ -45,6 +45,6 @@ src_install() {
 	# Copy documentation files
 	dodoc CHANGES README USAGE
 
-	# Make a symbolic link: /sbin/bliss-boot
+	# Make a symbolic link: /sbin/bliss-initramfs
 	dosym "/opt/${PN}/mkinitrd" "/sbin/${PN}"
 }
