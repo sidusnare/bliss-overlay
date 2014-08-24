@@ -20,7 +20,7 @@ IUSE="grub2 extlinux gpt"
 RDEPEND="
 	>=dev-lang/python-3.3
 	grub2? ( >=sys-boot/grub-2.00_p5107-r2 )
-	extlinux? ( sys-boot/syslinux )
+	extlinux? ( =>sys-boot/syslinux-5.00 )
 	gpt? ( sys-apps/gptfdisk )"
 
 src_install() {

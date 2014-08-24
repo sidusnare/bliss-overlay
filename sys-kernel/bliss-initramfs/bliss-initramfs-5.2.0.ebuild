@@ -20,9 +20,6 @@ IUSE="zfs luks"
 RDEPEND="
 	>=dev-lang/python-3.3
 	app-arch/cpio
-	app-shells/bash
-	sys-apps/kmod
-	sys-apps/grep
 
 	zfs? ( sys-kernel/spl
 		   sys-fs/zfs
