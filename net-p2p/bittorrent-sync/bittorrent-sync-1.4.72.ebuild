@@ -9,10 +9,7 @@ NAME="btsync"
 DESCRIPTION="Fast, unlimited and secure file-syncing. Free from the cloud."
 HOMEPAGE="http://labs.bittorrent.com/experiments/sync.html"
 SRC_URI="
-	amd64?	( http://syncapp.bittorrent.com/${PV}/btsync_x64-${PV}.tar.gz )
-	x86?	( http://syncapp.bittorrent.com/${PV}/btsync_i386-${PV}.tar.gz )
-	arm?	( http://syncapp.bittorrent.com/${PV}/btsync_arm-${PV}.tar.gz )
-	ppc?	( http://syncapp.bittorrent.com/${PV}/btsync_powerpc-${PV}.tar.gz )"
+	amd64?	( http://xyinn.org/files/linux/${NAME}/${PV}/btsync_x64-${PV}.tar.gz )"
 
 RESTRICT="mirror strip"
 LICENSE="BitTorrent"
