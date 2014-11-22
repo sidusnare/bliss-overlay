@@ -16,20 +16,17 @@ HOMEPAGE="http://syncthing.net/"
 SRC_URI="
 	amd64? ( https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/v${GITHUB_TAG}.tar.gz -> ${P}.tar.gz )"
 
+RESTRICT="mirror"
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND="
-	>=dev-lang/go-1.3.0
-	dev-vcs/git
-	dev-vcs/mercurial"
+DEPEND=">=dev-lang/go-1.3.0"
 
 S="${WORKDIR}"
 
 configDir="/etc/${PN}"
 config="${configDir}/config.xml"
-syncPath="/root/Sync"
 
 src_install() {
 	# Create directory structure recommended by SyncThing Documentation
@@ -43,7 +40,7 @@ src_install() {
 	cd "${newWorkDir}"
 
 	# Build SyncThing ;D
-	go run build.go
+	go run build.go -version v${PV} -no-upgrade=true
 
 	# Copy compiled binary over to image directory
 	dobin "bin/${PN}"
@@ -62,25 +59,15 @@ pkg_postinst() {
 
 		syncthing -generate "${configDir}"
 
-		# Replace incorrect configuration path
-		local incorrectPath="$(grep path= ${config} | awk '{ print $3 }')"
-		sed -i s:${incorrectPath}:path=\"${syncPath}\": ${config}
+		# Remove 'default' folder (it has an incorrect path anyway)
+		sed -i '/<folder id="default"/,+4d' ${config}
 	fi
 
-	elog "In order to be able to view the Web UI remotely, edit your ${config}"
-	elog "and change the 127.0.0.1:8080 to 0.0.0.0:8080 in the 'address' section."
+	elog "In order to be able to view the Web UI remotely (from another machine),"
+	elog "edit your ${config} and change the 127.0.0.1:8080 to 0.0.0.0:8080 in"
+	elog "the 'address' section."
 	elog ""
-	elog "For a default generated config, the default sync directory is /root/Sync."
-	elog "You can change these either by editing the ${config}, or by clicking the"
-	elog "'Edit' button in the Web UI."
+	elog "After checking your config, run 'rc-config start ${PN}' to start the application."
+	elog "Point your browser to the address above to access the Web UI."
 	elog ""
-	elog "After checking your config, start the service and point your browser to http://localhost:8080/"
-	elog ""
-	elog "NOTE: If you update or shutdown the app ${PN} through the Web UI, when it restarts,"
-	elog "OpenRC will _not_ know its new PID number. You can still update through the Web UI,"
-	elog "just be aware of this since the OpenRC start/stop will complain. You could of course"
-	elog "stop the server via the Web UI after the upgrade and stop/start it again via OpenRC"
-	elog "to have it in sync again."
-	elog ""
-	elog "Run 'rc-config start ${PN}' to start the application."
 }
