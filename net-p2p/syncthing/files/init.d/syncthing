@@ -4,11 +4,11 @@
 # Distributed under the terms of the GNU General Public License v2
 
 NAME="SyncThing"
-SYNC_NAME="syncthing"
-SYNC_PATH="/usr/bin"
-SYNC_BINARY="${SYNC_PATH}/${SYNC_NAME}"
-SYNC_OPTS="-home=/etc/${SYNC_NAME}"
-SYNC_PIDFILE="/var/run/${SYNC_NAME}.pid"
+SYNC_NAME="${SYNC_NAME:-syncthing}"
+SYNC_PATH="${SYNC_PATH:-/usr/bin}"
+SYNC_BINARY="${SYNC_BINARY:-$SYNC_PATH/$SYNC_NAME}"
+SYNC_OPTS="${SYNC_OPTS:--home=/etc/$SYNC_NAME}"
+SYNC_PIDFILE="${SYNC_PIDFILE:-/var/run/$SYNC_NAME.pid}"
 
 start() {
 	ebegin "Starting ${NAME}"
