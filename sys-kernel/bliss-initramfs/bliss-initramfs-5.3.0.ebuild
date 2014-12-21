@@ -7,14 +7,14 @@ GITHUB_USER="fearedbliss"
 GITHUB_REPO="bliss-initramfs"
 GITHUB_TAG="${PV}"
 
-DESCRIPTION="Allows you to boot your system's root filesystem installed on ZFS"
+DESCRIPTION="Allows you to boot your system's root filesystem installed on ZFS (also supports btrfs)"
 HOMEPAGE="https://github.com/${GITHUB_USER}/${GITHUB_REPO}"
 SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/${GITHUB_TAG}.tar.gz -> ${P}.tar.gz"
 
 RESTRICT="mirror strip"
 LICENSE="MPL-2.0"
 SLOT="0"
-KEYWORDS="-* ~amd64"
+KEYWORDS="-* amd64"
 IUSE="zfs luks"
 
 RDEPEND="
