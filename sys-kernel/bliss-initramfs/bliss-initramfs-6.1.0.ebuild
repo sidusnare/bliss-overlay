@@ -15,12 +15,12 @@ RESTRICT="mirror strip"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="-* ~amd64"
-IUSE="zfs luks"
+IUSE="zfs luks +udev"
 
 RDEPEND="
 	>=dev-lang/python-3.3
 	app-arch/cpio
-	virtual/udev
+	udev? ( virtual/udev )
 	zfs? ( sys-kernel/spl
 		   sys-fs/zfs
 	       sys-fs/zfs-kmod )
@@ -32,16 +32,31 @@ S="${WORKDIR}/${GITHUB_REPO}-${GITHUB_TAG}"
 
 src_install() {
 	# Copy the main executable
+	local executable="mkinitrd.py"
 	exeinto "/opt/${PN}"
-	doexe mkinitrd
+	doexe "${executable}"
 
 	# Copy the libraries required by this executable
 	cp -r "${S}/files" "${D}/opt/${PN}"
 	cp -r "${S}/pkg" "${D}/opt/${PN}"
 
+	# If udev is explictly disabled, disable it in the Udev hook
+	if ! use udev; then
+		local useUdevLine=20
+		sed -i -e "${useUdevLine}"s/1/0/ "${D}/opt/${PN}/pkg/hooks/Udev.py"
+	fi
+
 	# Copy documentation files
 	dodoc CHANGES README USAGE
 
 	# Make a symbolic link: /sbin/bliss-initramfs
-	dosym "/opt/${PN}/mkinitrd" "/sbin/${PN}"
+	dosym "/opt/${PN}/${executable}" "/sbin/${PN}"
+}
+
+pkg_postinst()
+{
+	if ! use udev; then
+		ewarn "${PN} has been installed without udev support."
+		ewarn "You will not be able to boot your machine using UUIDs."
+	fi
 }
