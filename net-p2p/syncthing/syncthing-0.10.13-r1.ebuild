@@ -3,7 +3,7 @@
 
 EAPI=5
 
-inherit user
+inherit user systemd
 
 GITHUB_USER="syncthing"
 GITHUB_REPO="syncthing"
@@ -19,7 +19,7 @@ SRC_URI="
 RESTRICT="mirror"
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 
 DEPEND=">=dev-lang/go-1.3.0"
 
@@ -47,6 +47,9 @@ src_install() {
 
 	# Install the OpenRC init file
 	doinitd "${FILESDIR}/init.d/${NAME}"
+
+	# Install the systemd unit file
+	systemd_dounit "${FILESDIR}/${PN}.service"
 }
 
 pkg_postinst() {
@@ -60,7 +63,7 @@ pkg_postinst() {
 		syncthing -generate "${configDir}"
 
 		# Remove 'default' folder (it has an incorrect path anyway)
-		sed -i '/<folder id="default"/,+4d' ${config}
+		sed -i '/<folder id="default"/,/<\/folder>/d' "${config}"
 	fi
 
 	elog "In order to be able to view the Web UI remotely (from another machine),"
