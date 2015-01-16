@@ -20,7 +20,7 @@ RDEPEND=">=dev-lang/python-3.3"
 
 src_install() {
 	# Copy the scripts
-	exeinto "/usr/local/sbin/${PN}"
+	exeinto "/usr/local/sbin/"
 
 	files=(
 		"clean_snapshots"
