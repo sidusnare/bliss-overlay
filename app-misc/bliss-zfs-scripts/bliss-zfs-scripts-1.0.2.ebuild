@@ -12,7 +12,7 @@ HOMEPAGE="https://github.com/${GITHUB_USER}/${GITHUB_REPO}"
 SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/${GITHUB_TAG}.tar.gz -> ${P}.tar.gz"
 
 RESTRICT="mirror strip"
-LICENSE="GPL-2"
+LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="amd64"
 
@@ -20,7 +20,7 @@ RDEPEND=">=dev-lang/python-3.3"
 
 src_install() {
 	# Copy the scripts
-	exeinto "/opt/${PN}"
+	exeinto "/usr/local/sbin/${PN}"
 
 	files=(
 		"clean_snapshots"
