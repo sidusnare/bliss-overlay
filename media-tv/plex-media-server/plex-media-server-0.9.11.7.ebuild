@@ -40,8 +40,8 @@ pkg_setup() {
 }
 
 src_install() {
-	local INIT="${FILESDIR}/${PN}"
-	local FILES_DIR_INIT="${FILESDIR}/${PN}"
+	local INIT_NAME="${PN}.service"
+	local INIT="${FILESDIR}/systemd/${INIT_NAME}"
 	local CONFIG_VANILLA="${S}/etc/default/plexmediaserver"
 	local CONFIG_PATH="${D}/etc/${_SHORTNAME}"
 	local PMS_DIR="${D}/usr/sbin/"
@@ -80,11 +80,8 @@ src_install() {
 	mkdir -p "${LICENSE_DIR}"
 	cp "${LICENSE_FILE}" "${LICENSE_DIR}/PlexMediaServer"
 
-	# Install the OpenRC init file
-	doinitd "${INIT}"
-
 	# Install systemd service file
-	systemd_newunit "${FILESDIR}"/systemd/plex-media-server.service plex-media-server.service
+	systemd_newunit "${INIT}" "${INIT_NAME}"
 }
 
 pkg_postinst() {
