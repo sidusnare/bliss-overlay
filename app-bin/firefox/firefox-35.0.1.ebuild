@@ -3,6 +3,8 @@
 
 EAPI=5
 
+inherit multilib
+
 _FN="${PN}-${PV}"
 
 DESCRIPTION="An open source web browser"
@@ -22,6 +24,7 @@ src_install()
     local FINALDIR="${D}/opt/${PN}"
 	local USR_BIN="${D}/usr/bin"
 	local APP_ICON_DIR="${D}/usr/share/applications"
+	local MOZILLA_FIVE_HOME="/opt/${PN}"
 
     mkdir -p "${FINALDIR}" "${USR_BIN}" "${APP_ICON_DIR}"
 
@@ -31,6 +34,10 @@ src_install()
     # Make symlink to firefox binary
     cd "${USR_BIN}"
     ln -s "${FINALDIR}/${PN}" ${PN}
+
+	# Share plugins directory
+	local PLUGIN_BASE_PATH="/usr/$(get_libdir)" 
+	dosym "${PLUGIN_BASE_PATH}/nsbrowser/plugins" "${MOZILLA_FIVE_HOME}/browser/plugins"
 
 	# Copy icon
 	cp "${FILESDIR}/${PN}.desktop" "${APP_ICON_DIR}"
