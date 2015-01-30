@@ -1,4 +1,4 @@
-# Copyright 2013-2014 Jonathan Vasquez <jvasquez1011@gmail.com>
+# Copyright 2013-2015 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -21,7 +21,7 @@ SRC_URI="http://xyinn.org/gentoo/kernels/${_PLV}/kernel-${_PLV}.tar.xz"
 RESTRICT="mirror strip"
 LICENSE="GPL-2"
 SLOT="${_PLV}"
-KEYWORDS="-* amd64"
+KEYWORDS="-* ~amd64"
 
 S="${WORKDIR}"
 
