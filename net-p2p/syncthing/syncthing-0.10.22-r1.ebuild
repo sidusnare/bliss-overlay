@@ -1,5 +1,5 @@
 # Copyright 2014-2015 Jonathan Vasquez <jvasquez1011@gmail.com>
-# Distributed under the terms of the Simplified BSD License
+# Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
 
