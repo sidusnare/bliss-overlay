@@ -1,5 +1,5 @@
-# Copyright 2014 Jonathan Vasquez <jvasquez1011@gmail.com>
-# Distributed under the terms of the GNU General Public License v2
+# Copyright 2014-2015 Jonathan Vasquez <jvasquez1011@gmail.com>
+# Distributed under the terms of the Simplified BSD License
 
 EAPI=5
 
@@ -25,7 +25,7 @@ DEPEND=">=dev-lang/go-1.3.0"
 
 S="${WORKDIR}"
 
-configDir="/etc/${PN}"
+configDir="~/.config/syncthing"
 config="${configDir}/config.xml"
 
 src_install() {
@@ -45,32 +45,23 @@ src_install() {
 	# Copy compiled binary over to image directory
 	dobin "bin/${PN}"
 
-	# Install the OpenRC init file
-	doinitd "${FILESDIR}/init.d/${NAME}"
-
 	# Install the systemd unit file
-	systemd_dounit "${FILESDIR}/${PN}.service"
+	local systemdServiceFile="etc/linux-systemd/system/${PN}@.service"
+	systemd_dounit "${systemdServiceFile}"
 }
 
 pkg_postinst() {
-	if [[ ! -d "${configDir}" ]]; then
-		mkdir "${configDir}"
-	fi
-
-	if [[ ! -e "${config}" ]]; then
-		einfo "Generating default configuration file ..."
-
-		syncthing -generate "${configDir}"
-
-		# Remove 'default' folder (it has an incorrect path anyway)
-		sed -i '/<folder id="default"/,/<\/folder>/d' "${config}"
-	fi
-
 	elog "In order to be able to view the Web UI remotely (from another machine),"
 	elog "edit your ${config} and change the 127.0.0.1:8080 to 0.0.0.0:8080 in"
 	elog "the 'address' section."
 	elog ""
-	elog "After checking your config, run 'rc-config start ${PN}' to start the application."
-	elog "Point your browser to the address above to access the Web UI."
+	elog "After checking your config, run 'systemctl start ${PN}@<user>' to start the application."
+	elog "This will start the syncthing daemon under that user. Then point your browser to the address"
+	elog "above to access the Web UI."
 	elog ""
+	elog "If migrating from the last syncthing ebuild (0.10.22-r0 or below), you need to move your"
+	elog "syncthing config from /etc/syncthing to your user's ${configDir} and change the permissions"
+	elog "to match your user. This is because the daemon is now running under that specific user rather"
+	elog "than running as root. Also make sure you change the permissions for the directory you were sharing."
+	elog "The permissions for your directory were probably all set to root as well."
 }
