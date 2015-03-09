@@ -19,7 +19,7 @@ SRC_URI="
 RESTRICT="mirror"
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="amd64"
+KEYWORDS="~amd64"
 
 DEPEND=">=dev-lang/go-1.3.0"
 
@@ -56,12 +56,7 @@ pkg_postinst() {
 	elog "the 'address' section."
 	elog ""
 	elog "After checking your config, run 'systemctl start ${PN}@<user>' to start the application."
-	elog "This will start the syncthing daemon under that user. Then point your browser to the address"
-	elog "above to access the Web UI."
+	elog "This will start the syncthing daemon under that user."
 	elog ""
-	elog "If migrating from the last syncthing ebuild (0.10.22-r0 or below), you need to move your"
-	elog "syncthing config from /etc/syncthing to your user's ${configDir} and change the permissions"
-	elog "to match your user. This is because the daemon is now running under that specific user rather"
-	elog "than running as root. Also make sure you change the permissions for the directory you were sharing."
-	elog "The permissions for your directory were probably all set to root as well."
+	elog "Point your browser to the address above to access the Web UI."
 }
