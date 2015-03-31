@@ -13,13 +13,12 @@ NAME="syncthing"
 DESCRIPTION="Open Source Continuous File Synchronization"
 HOMEPAGE="http://syncthing.net/"
 
-SRC_URI="
-	amd64? ( https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/v${GITHUB_TAG}.tar.gz -> ${P}.tar.gz )"
+SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/v${GITHUB_TAG}.tar.gz -> ${P}.tar.gz"
 
 RESTRICT="mirror"
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="amd64"
+KEYWORDS="~x86 amd64"
 
 DEPEND=">=dev-lang/go-1.3.0"
 
