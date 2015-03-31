@@ -9,8 +9,8 @@ EAPI=5
 
 inherit eutils user systemd
 
-MINOR1="803"
-MINOR2="87d0708"
+MINOR1="958"
+MINOR2="80f1748"
 
 _APPNAME="plexmediaserver"
 _USERNAME="plex"
@@ -27,7 +27,7 @@ SRC_URI="
 SLOT="0"
 LICENSE="PlexMediaServer"
 RESTRICT="mirror strip"
-KEYWORDS="-* amd64"
+KEYWORDS="-* ~amd64"
 
 DEPEND="net-dns/avahi"
 RDEPEND="${DEPEND}"
@@ -81,6 +81,10 @@ src_install() {
 	# Copy license (Probably not good to write to /usr/portage/licenses/)
 	mkdir -p "${LICENSE_DIR}"
 	cp "${LICENSE_FILE}" "${LICENSE_DIR}/PlexMediaServer"
+
+	# Install the OpenRC init/conf files
+	doinitd "${FILESDIR}/init.d/${PN}"
+	doconfd "${FILESDIR}/conf.d/${PN}"
 
 	# Install systemd service file
 	systemd_newunit "${INIT}" "${INIT_NAME}"
