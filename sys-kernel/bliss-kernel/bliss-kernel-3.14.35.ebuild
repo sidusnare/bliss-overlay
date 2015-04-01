@@ -10,7 +10,7 @@ _LV="KS.01"                     # Local Version
 _PLV="${PV}-${_LV}"             # Package Version + Local Version (Module Dir)
 _KN="linux-${_PLV}"             # Kernel Directory Name
 _KD="/usr/src/${_KN}"           # Kernel Directory
-_CONF="xyinn.conf"				# Blacklisted Kernel Modules
+_CONF="xyinn.conf"              # Blacklisted Kernel Modules
 _BD="/boot/kernels/${_PLV}"     # Kernel /boot Directory
 
 # Main
@@ -27,50 +27,50 @@ S="${WORKDIR}"
 
 src_compile()
 {
-	# Unset ARCH so that you don't get Makefile not found messages
-	unset ARCH && return
+    # Unset ARCH so that you don't get Makefile not found messages
+    unset ARCH && return
 }
 
 src_install()
 {
-	# Install Kernel
-	insinto "${_BD}"
+    # Install Kernel
+    insinto "${_BD}"
 
-	kfiles=(
-		"System.map-${_PLV}"
-		"vmlinuz-${_PLV}"
-		"config-${_PLV}"
-	)
+    kfiles=(
+        "System.map-${_PLV}"
+        "vmlinuz-${_PLV}"
+        "config-${_PLV}"
+    )
 
-	for file in ${kfiles[*]}; do
-		newins "${S}/kernel/${file}" "${file%%-*}"
-	done
+    for file in ${kfiles[*]}; do
+        newins "${S}/kernel/${file}" "${file%%-*}"
+    done
 
-	# Install Modules
-	dodir /lib/modules
-	cp -r "${S}/modules/${_PLV}" "${D}/lib/modules"
+    # Install Modules
+    dodir /lib/modules
+    cp -r "${S}/modules/${_PLV}" "${D}/lib/modules"
 
-	# Install Headers
-	dodir /usr/src
-	cp -r "${S}/headers/${_KN}" "${D}/usr/src"
+    # Install Headers
+    dodir /usr/src
+    cp -r "${S}/headers/${_KN}" "${D}/usr/src"
 
-	# Install Blacklist
-	insinto /etc/modprobe.d
-	doins "${S}/modules/${_CONF}"
+    # Install Blacklist
+    insinto /etc/modprobe.d
+    doins "${S}/modules/${_CONF}"
 }
 
 pkg_postinst()
 {
-	# Set a symlink to this kernel if /usr/src/linux doesn't exist
+    # Set a symlink to this kernel if /usr/src/linux doesn't exist
 
-	# Do not create symlink via 'symlink' use flag. This package will be
-	# re-emerged when an 'emerge @module-rebuild' is done. If a person does
-	# this and the symlink use flag is set, it will change the symlink to this
-	# ebuild, possibly not recompiling packages that are suppose to be
-	# recompiled for another kernel.
+    # Do not create symlink via 'symlink' use flag. This package will be
+    # re-emerged when an 'emerge @module-rebuild' is done. If a person does
+    # this and the symlink use flag is set, it will change the symlink to this
+    # ebuild, possibly not recompiling packages that are suppose to be
+    # recompiled for another kernel.
 
-	if [[ ! -e "/usr/src/linux" ]]; then
-		einfo "Creating symlink to ${_KD}"
-		cd /usr/src && ln -sf ${_KN} linux
-	fi
+    if [[ ! -e "/usr/src/linux" ]]; then
+        einfo "Creating symlink to ${_KD}"
+        cd /usr/src && ln -sf ${_KN} linux
+    fi
 }

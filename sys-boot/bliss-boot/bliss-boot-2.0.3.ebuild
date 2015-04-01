@@ -18,29 +18,29 @@ KEYWORDS="amd64"
 IUSE="grub2 extlinux gpt"
 
 RDEPEND="
-	>=dev-lang/python-3.3
-	grub2? ( >=sys-boot/grub-2.00_p5107-r2 )
-	extlinux? ( >=sys-boot/syslinux-5.00 )
-	gpt? ( sys-apps/gptfdisk )"
+    >=dev-lang/python-3.3
+    grub2? ( >=sys-boot/grub-2.00_p5107-r2 )
+    extlinux? ( >=sys-boot/syslinux-5.00 )
+    gpt? ( sys-apps/gptfdisk )"
 
 src_install() {
-	# Copy the main executable
-	exeinto "/opt/${PN}"
-	doexe "${PN}"
+    # Copy the main executable
+    exeinto "/opt/${PN}"
+    doexe "${PN}"
 
-	# Copy the libraries required by this executable
-	cp -r "${S}/libs" "${D}/opt/${PN}"
+    # Copy the libraries required by this executable
+    cp -r "${S}/libs" "${D}/opt/${PN}"
 
-	# Copy documentation files
-	dodoc CHANGES README USAGE
+    # Copy documentation files
+    dodoc CHANGES README USAGE
 
-	# Install default configuration file
-	local config="/etc/${PN}"
+    # Install default configuration file
+    local config="/etc/${PN}"
 
-	keepdir "${config}"
-	insinto "${config}"
-	doins "${S}/defaults/config.py"
+    keepdir "${config}"
+    insinto "${config}"
+    doins "${S}/defaults/config.py"
 
-	# Make a symbolic link: /sbin/bliss-boot
-	dosym "/opt/${PN}/${PN}" "/sbin/${PN}"
+    # Make a symbolic link: /sbin/bliss-boot
+    dosym "/opt/${PN}/${PN}" "/sbin/${PN}"
 }

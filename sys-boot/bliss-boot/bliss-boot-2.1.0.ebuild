@@ -1,4 +1,4 @@
-# Copyright 2014 Jonathan Vasquez <jvasquez1011@gmail.com>
+# Copyright 2014-2015 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -12,16 +12,12 @@ HOMEPAGE="https://github.com/${GITHUB_USER}/${GITHUB_REPO}"
 SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/${GITHUB_TAG}.tar.gz -> ${P}.tar.gz"
 
 RESTRICT="mirror strip"
-LICENSE="MPL-2.0"
+LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64"
-IUSE="grub2 extlinux gpt"
+KEYWORDS="~amd64"
 
 RDEPEND="
-    >=dev-lang/python-3.3
-    grub2? ( >=sys-boot/grub-2.00_p5107-r2 )
-    extlinux? ( >=sys-boot/syslinux-5.00 )
-    gpt? ( sys-apps/gptfdisk )"
+    >=dev-lang/python-3.3"
 
 src_install() {
     # Copy the main executable
