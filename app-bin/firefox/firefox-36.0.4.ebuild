@@ -42,3 +42,12 @@ src_install()
 	# Copy icon
 	cp "${FILESDIR}/${PN}.desktop" "${APP_ICON_DIR}"
 }
+
+pkg_postinst()
+{
+	elog "Since this is a precompiled binary that is installed in /opt, you will by default"
+	elog "receive \"Update\" messages that will not work (no permission to do so)."
+	elog "In order to disable these update messages, disable automatic updating/checking in Firefox."
+	elog "To do so, open up Firefox and go to Preferences -> Advanced -> Update, and check the"
+	elog "\"Never check for updates\" option."
+}
