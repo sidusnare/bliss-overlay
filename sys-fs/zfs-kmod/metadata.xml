@@ -2,8 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer>
-		<email>ryao@gentoo.org</email>
-		<name>Richard Yao</name>
+		<email>jvasquez1011@gmail.com</email>
+		<name>Jonathan Vasquez</name>
 	</maintainer>
 	<use>
 		<flag name="rootfs">Install zfs-shutdown script to support exporting a pool containing rootfs</flag>

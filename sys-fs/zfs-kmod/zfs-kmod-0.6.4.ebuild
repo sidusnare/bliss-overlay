@@ -18,7 +18,7 @@ else
 	MY_PV=$(replace_version_separator 3 '-')
 	SRC_URI="https://github.com/zfsonlinux/zfs/archive/zfs-${MY_PV}.tar.gz"
 	S="${WORKDIR}/zfs-zfs-${MY_PV}"
-	KEYWORDS="amd64"
+	KEYWORDS="~amd64"
 fi
 
 DESCRIPTION="Linux ZFS kernel module for sys-fs/zfs"

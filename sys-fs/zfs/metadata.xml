@@ -2,8 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer>
-		<email>ryao@gentoo.org</email>
-		<name>Richard Yao</name>
+		<email>jvasquez1011@gmail.com</email>
+		<name>Jonathan Vasquez</name>
 	</maintainer>
 	<use>
 		<flag name="kernel-builtin">Disable dependency on sys-fs/zfs-kmod under the assumption that ZFS is part of the kernel source tree</flag>
