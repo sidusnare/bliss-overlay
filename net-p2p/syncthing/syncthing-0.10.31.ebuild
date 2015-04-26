@@ -54,19 +54,14 @@ src_install() {
 }
 
 pkg_postinst() {
+	elog "This is the last release for the 0.10.X branch. A breaking change was introduced with"
+	elog "0.11.X which will make 0.10 and 0.11 clients non-communicatable. If this is a new deployment,"
+	elog "consider using 0.11 from the start."
+	elog ""
 	elog "In order to be able to view the Web UI remotely (from another machine),"
 	elog "edit your ${config} and change the 127.0.0.1:8080 to 0.0.0.0:8080 in"
 	elog "the 'address' section. This file will only be generated once you start syncthing."
 	elog ""
-	elog "Instructions for OpenRC:"
-	elog "------------------------"
 	elog "Modify the /etc/conf.d/${PN} file and set the user/group/ and syncthing home directory"
-	elog "before launching."
-	elog ""
-	elog "Instructions for systemd:"
-	elog "-------------------------"
-	elog "After checking your config, run 'systemctl start ${PN}@<user>' to start the application."
-	elog "This will start the syncthing daemon under that user."
-	elog ""
-	elog "Then point your browser to the address above to access the Web UI."
+	elog "before launching. Afterwards, you can start ${PN} by doing a: rc-config start ${PN}"
 }
