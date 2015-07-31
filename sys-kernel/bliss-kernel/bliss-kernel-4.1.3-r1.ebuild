@@ -6,7 +6,7 @@ EAPI=5
 inherit eutils mount-boot
 
 # Variables
-_LV="FC.01"                     # Local Version
+_LV="FC.02"                     # Local Version
 _PLV="${PV}-${_LV}"             # Package Version + Local Version (Module Dir)
 _KN="linux-${_PLV}"             # Kernel Directory Name
 _KD="/usr/src/${_KN}"           # Kernel Directory
@@ -21,7 +21,7 @@ SRC_URI="http://xyinn.org/gentoo/kernels/${_PLV}/kernel-${_PLV}.tar.xz"
 RESTRICT="mirror strip"
 LICENSE="GPL-2"
 SLOT="${_PLV}"
-KEYWORDS="-* amd64"
+KEYWORDS=""
 
 S="${WORKDIR}"
 

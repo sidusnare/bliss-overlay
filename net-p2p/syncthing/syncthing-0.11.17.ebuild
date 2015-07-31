@@ -18,7 +18,7 @@ SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/v${GITHUB_TAG}
 RESTRICT="mirror"
 LICENSE="MPL-2.0"
 SLOT="0"
-KEYWORDS="~x86 amd64"
+KEYWORDS="~x86 ~amd64"
 
 DEPEND=">=dev-lang/go-1.3.0"
 
@@ -54,10 +54,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog "This is a breaking change release (0.11.X). If you have other devices that are"
-	elog "running on 0.10.X, you will need to upgrade them as well since these versions"
-	elog "cannot communicate with each other."
-	elog ""
 	elog "In order to be able to view the Web UI remotely (from another machine),"
 	elog "edit your ${config} and change the 127.0.0.1:8080 to 0.0.0.0:8080 in"
 	elog "the 'address' section. This file will only be generated once you start syncthing."
