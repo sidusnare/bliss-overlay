@@ -1,33 +1,31 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-
-# Contributor: Jonathan Vasquez <jvasquez1011@gmail.com>
-
 # Credits to François-Xavier Payet (foux) for making the original ebuild
+
+# Maintainer: Jonathan Vasquez <jvasquez1011@gmail.com>
 
 EAPI=5
 
 inherit eutils user systemd
 
-MINOR1="1173"
-MINOR2="937aac3"
+MINOR1="1362"
+MINOR2="4601e39"
 
 _APPNAME="plexmediaserver"
 _USERNAME="plex"
 _SHORTNAME="${_USERNAME}"
+_FULL_VERSION="${PV}.${MINOR1}-${MINOR2}"
 
-# No longer using this. Mirroring it since nightly builds go away and break the ebuild.
-#URI="https://nightlies.plex.tv/directdl/plex-media-server/dist-ninja"
-URI="http://xyinn.org/files/linux/${_USERNAME}"
+URI="https://downloads.plex.tv/plex-media-server"
 
 DESCRIPTION="Plex Media Server is a free media library that is intended for use with a plex client available for OS X, iOS and Android systems."
 HOMEPAGE="http://www.plex.tv/"
 SRC_URI="
-	amd64? ( ${URI}/plexmediaserver_${PV}.${MINOR1}-${MINOR2}_amd64.deb )"
+	amd64? ( ${URI}/${_FULL_VERSION}/plexmediaserver_${_FULL_VERSION}_amd64.deb )"
 SLOT="0"
 LICENSE="PlexMediaServer"
 RESTRICT="mirror strip"
-KEYWORDS="-* amd64"
+KEYWORDS="-* ~amd64"
 
 DEPEND="net-dns/avahi"
 RDEPEND="${DEPEND}"
