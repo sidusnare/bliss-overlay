@@ -5,6 +5,6 @@ net-p2p/syncthing 0.11.19 0.11.20: Open Source Continuous File Synchronization
 sys-boot/bliss-boot 2.1.2: Bootloader Configuration and Installation Utility
 sys-kernel/alt-sources 3.18.10: Kernel Sources and Patches for the System Rescue CD Alternate Kernel
 sys-kernel/bliss-initramfs 6.5.1: Boot your system's rootfs from ZFS, LVM, RAID, or a variety of other configs.
-sys-kernel/bliss-kernel 3.14.50 4.1.5: Precompiled Vanilla Kernel (Kernel Ready-to-Eat [KRE])
+sys-kernel/bliss-kernel 3.14.50 3.14.51 4.1.6: Precompiled Vanilla Kernel (Kernel Ready-to-Eat [KRE])
 sys-kernel/std-sources 3.14.35: Kernel Sources and Patches for the System Rescue CD Standard Kernel
 virtual/linux-sources 0 1: Virtual for Linux kernel sources
