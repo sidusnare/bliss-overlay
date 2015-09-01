@@ -1,4 +1,4 @@
-app-admin/lsyncd 2.1.5-r1: Live Syncing (Mirror) Daemon
+app-admin/lsyncd 2.1.5-r2: Live Syncing (Mirror) Daemon
 dev-java/oracle-jre-bin 1.8.0.51: Oracle's Java SE Runtime Environment
 media-tv/plex-media-server 0.9.12.8 0.9.12.11: Plex Media Server is a free media library that is intended for use with a plex client available for OS X, iOS and Android systems.
 net-p2p/syncthing 0.11.20 0.11.23: Open Source Continuous File Synchronization
