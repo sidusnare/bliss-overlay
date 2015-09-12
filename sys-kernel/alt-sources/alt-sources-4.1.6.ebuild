@@ -5,17 +5,17 @@ EAPI=5
 
 inherit eutils
 
-# For System Rescue CD 4.5.2 (Alternate Kernel - x86_64)
-TAIL="alt452-amd64"
+# For System Rescue CD 4.6.0 (Alternate Kernel - x86_64)
+TAIL="alt460-amd64"
 KERNEL="linux-${PV}-${TAIL}"
 KERNEL_CONF="kernel-${PV}-${TAIL}.conf"
-_KV="3.18"
+_KV="4.1"
 KERNEL_FILE="linux-${_KV}.tar.xz"
-FEDORA_NUMBER="20"
+FEDORA_NUMBER="21"
 
 DESCRIPTION="Kernel Sources and Patches for the System Rescue CD Alternate Kernel"
 HOMEPAGE="http://kernel.sysresccd.org/"
-SRC_URI="mirror://kernel/linux/kernel/v3.x/${KERNEL_FILE}"
+SRC_URI="mirror://kernel/linux/kernel/v4.x/${KERNEL_FILE}"
 
 RESTRICT="mirror"
 LICENSE="GPL-2"

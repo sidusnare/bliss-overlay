@@ -1,12 +1,12 @@
-# Copyright 2014-2015 Jonathan Vasquez <jvasquez1011@gmail.com>
+# Copyright 2013-2015 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
 
 inherit eutils
 
-# For System Rescue CD 4.5.2 (Standard Kernel - x86_64)
-TAIL="std452-amd64"
+# For System Rescue CD 4.6.0 (Standard Kernel - x86_64)
+TAIL="std460-amd64"
 KERNEL="linux-${PV}-${TAIL}"
 KERNEL_CONF="kernel-${PV}-${TAIL}.conf"
 _KV="3.14"
