@@ -1,10 +1,8 @@
-app-admin/lsyncd 2.1.5-r2: Live Syncing (Mirror) Daemon
-dev-java/oracle-jre-bin 1.8.0.51: Oracle's Java SE Runtime Environment
 media-tv/plex-media-server 0.9.12.8 0.9.12.11: Plex Media Server is a free media library that is intended for use with a plex client available for OS X, iOS and Android systems.
-net-p2p/syncthing 0.11.24 0.11.25: Open Source Continuous File Synchronization
+net-p2p/syncthing 0.11.25 0.11.26: Open Source Continuous File Synchronization
 sys-boot/bliss-boot 2.1.2: Bootloader Configuration and Installation Utility
 sys-kernel/alt-sources 4.1.6: Kernel Sources and Patches for the System Rescue CD Alternate Kernel
 sys-kernel/bliss-initramfs 6.5.1 6.6.0 6.7.0: Boot your system's rootfs from ZFS, LVM, RAID, or a variety of other configs.
-sys-kernel/bliss-kernel 3.14.52 4.1.8 4.1.9: Precompiled Vanilla Kernel (Kernel Ready-to-Eat [KRE])
+sys-kernel/bliss-kernel 3.14.52 4.1.8 4.1.10: Precompiled Vanilla Kernel (Kernel Ready-to-Eat [KRE])
 sys-kernel/std-sources 3.14.50: Kernel Sources and Patches for the System Rescue CD Standard Kernel
 virtual/linux-sources 0 1: Virtual for Linux kernel sources
