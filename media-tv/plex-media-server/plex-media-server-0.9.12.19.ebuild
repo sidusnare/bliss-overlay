@@ -8,8 +8,8 @@ EAPI=5
 
 inherit eutils user systemd
 
-MINOR1="1406"
-MINOR2="8403350"
+MINOR1="1537"
+MINOR2="f38ac80"
 
 _APPNAME="plexmediaserver"
 _USERNAME="plex"
@@ -25,7 +25,7 @@ SRC_URI="
 SLOT="0"
 LICENSE="PlexMediaServer"
 RESTRICT="mirror strip"
-KEYWORDS="-* amd64"
+KEYWORDS="-* ~amd64"
 
 DEPEND="net-dns/avahi"
 RDEPEND="${DEPEND}"
