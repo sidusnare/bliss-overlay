@@ -1,0 +1,13 @@
+DEFINED_PHASES=install postinst
+DESCRIPTION=Boot your system's rootfs from ZFS, LVM, RAID, or a variety of other configs.
+EAPI=5
+HOMEPAGE=https://github.com/fearedbliss/bliss-initramfs
+IUSE=luks raid lvm zfs +udev
+KEYWORDS=-* amd64
+LICENSE=MPL-2.0
+RDEPEND=>=dev-lang/python-3.3 app-arch/cpio udev? ( virtual/udev ) luks? ( sys-fs/cryptsetup app-crypt/gnupg ) raid? ( sys-fs/mdadm ) lvm? ( sys-fs/lvm2 ) zfs? ( sys-kernel/spl sys-fs/zfs sys-fs/zfs-kmod )
+RESTRICT=mirror strip
+SLOT=0
+SRC_URI=https://github.com/fearedbliss/bliss-initramfs/archive/6.5.1.tar.gz -> bliss-initramfs-6.5.1.tar.gz
+_eclass_exported_funcs=pkg_postinst:- src_install:-
+_md5_=c2c28d46394817674fbb767f1cc27a08
