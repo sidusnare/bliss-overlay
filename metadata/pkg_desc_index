@@ -1,8 +1,8 @@
 media-tv/plex-media-server 0.9.12.13 0.9.12.18 0.9.12.19: Plex Media Server is a free media library that is intended for use with a plex client available for OS X, iOS and Android systems.
-net-p2p/syncthing 0.11.26 0.12.2 0.12.3 0.12.4: Open Source Continuous File Synchronization
+net-p2p/syncthing 0.11.26 0.12.4 0.12.9: Open Source Continuous File Synchronization
 sys-boot/bliss-boot 2.1.2: Bootloader Configuration and Installation Utility
 sys-kernel/alt-sources 4.1.6: Kernel Sources and Patches for the System Rescue CD Alternate Kernel
 sys-kernel/bliss-initramfs 6.5.1 6.6.0 6.7.0: Boot your system's rootfs from ZFS, LVM, RAID, or a variety of other configs.
-sys-kernel/bliss-kernel 3.14.52 4.1.11 4.1.12: Precompiled Vanilla Kernel (Kernel Ready-to-Eat [KRE])
+sys-kernel/bliss-kernel 3.14.52 4.1.12: Precompiled Vanilla Kernel (Kernel Ready-to-Eat [KRE])
 sys-kernel/std-sources 3.14.50: Kernel Sources and Patches for the System Rescue CD Standard Kernel
 virtual/linux-sources 0 1: Virtual for Linux kernel sources
