@@ -1,7 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Copyright 2013-2015 François-Xavier Payet <fx.payet@tfdn.org>
-# Copyright 2015 Jonathan Vasquez <jvasquez1011@gmail.com>
-
+# Copyright 2015-2016 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
