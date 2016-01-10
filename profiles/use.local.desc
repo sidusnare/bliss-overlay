@@ -5,8 +5,13 @@
 sys-boot/bliss-boot:extlinux - extlinux support
 sys-boot/bliss-boot:gpt - Ability to create, delete, and/or modify a GPT layout.
 sys-boot/bliss-boot:grub2 - GRUB 2 support
+sys-fs/zfs:kernel-builtin - Disable dependency on sys-fs/zfs-kmod under the assumption that ZFS is part of the kernel source tree
+sys-fs/zfs:rootfs - Enable dependencies required for booting off a pool containing a rootfs
+sys-fs/zfs:test-suite - Install regression test suite
+sys-fs/zfs-kmod:rootfs - Install zfs-shutdown script to support exporting a pool containing rootfs
 sys-kernel/bliss-initramfs:luks - Encryption support
 sys-kernel/bliss-initramfs:lvm - Logical Volume support
 sys-kernel/bliss-initramfs:raid - RAID support
 sys-kernel/bliss-initramfs:zfs - ZFS support
+sys-kernel/spl:debug-log - Enable additional diagnostics
 virtual/linux-sources:firmware - Install linux kernel firmware
