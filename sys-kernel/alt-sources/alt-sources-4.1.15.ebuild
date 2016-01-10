@@ -1,21 +1,21 @@
-# Copyright 2013-2015 Jonathan Vasquez <jvasquez1011@gmail.com>
+# Copyright 2013-2016 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
 
 inherit eutils
 
-# For System Rescue CD 4.6.0 (Standard Kernel - x86_64)
-TAIL="std460-amd64"
+# For System Rescue CD 4.7.0 (Alternate Kernel - x86_64)
+TAIL="alt470-amd64"
 KERNEL="linux-${PV}-${TAIL}"
 KERNEL_CONF="kernel-${PV}-${TAIL}.conf"
-_KV="3.14"
+_KV="4.1"
 KERNEL_FILE="linux-${_KV}.tar.xz"
-FEDORA_VERSION="19"
+FEDORA_NUMBER="21"
 
-DESCRIPTION="Kernel Sources and Patches for the System Rescue CD Standard Kernel"
+DESCRIPTION="Kernel Sources and Patches for the System Rescue CD Alternate Kernel"
 HOMEPAGE="http://kernel.sysresccd.org/"
-SRC_URI="mirror://kernel/linux/kernel/v3.x/${KERNEL_FILE}"
+SRC_URI="mirror://kernel/linux/kernel/v4.x/${KERNEL_FILE}"
 
 RESTRICT="mirror"
 LICENSE="GPL-2"
@@ -33,7 +33,7 @@ src_unpack()
 src_prepare()
 {
 	epatch "${FILESDIR}/${PV}/${PN}-${_KV}-01-stable-${PV}.patch.xz"
-	epatch "${FILESDIR}/${PV}/${PN}-${_KV}-02-fc${FEDORA_VERSION}.patch.xz"
+	epatch "${FILESDIR}/${PV}/${PN}-${_KV}-02-fc${FEDORA_NUMBER}.patch.xz"
 	epatch "${FILESDIR}/${PV}/${PN}-${_KV}-03-aufs.patch.xz"
 	epatch "${FILESDIR}/${PV}/${PN}-${_KV}-04-reiser4.patch.xz"
 }
