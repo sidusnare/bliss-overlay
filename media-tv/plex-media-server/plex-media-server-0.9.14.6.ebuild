@@ -24,7 +24,7 @@ SRC_URI="
 SLOT="0"
 LICENSE="PlexMediaServer"
 RESTRICT="mirror strip"
-KEYWORDS="-* ~amd64"
+KEYWORDS="-* amd64"
 
 DEPEND="net-dns/avahi"
 RDEPEND="${DEPEND}"
@@ -84,16 +84,7 @@ src_install() {
 	doinitd "${FILESDIR}/init.d/${PN}"
 	doconfd "${FILESDIR}/conf.d/${PN}"
 
-	# for "multilib-strict" FEATURE(S) compliance
-	if [[ $(get_libdir) != lib ]]; then
-		mv "${D}"/usr/lib "${D}"/usr/$(get_libdir) || die
-	fi
-
-	# don't break revdep-rebuild, @preserved-rebuild, etc
-	cat > "${T}"/66plex <<-EOF
-		LDPATH=/usr/$(get_libdir)/plexmediaserver
-	EOF
-	doenvd "${T}"/66plex
+	_handle_multilib
 
 	# Install systemd service file
 	systemd_newunit "${INIT}" "${INIT_NAME}"
@@ -107,4 +98,22 @@ pkg_postinst() {
 	ewarn "Please note, that the URL to the library management has changed from http://<ip>:32400/manage to http://<ip>:32400/web!"
 	ewarn "If the new management interface forces you to log into myPlex and afterwards gives you an error that you need to be a"
 	ewarn "plex-pass subscriber please delete the folder WebClient.bundle inside the Plug-Ins folder found in your library!"
+}
+
+# Finds out where the library directory is for this system
+# and handles ldflags as to not break library dependencies
+# during rebuilds.
+_handle_multilib()
+{
+	# "multilib-strict" FEATURE(S) compliance
+	if [[ $(get_libdir) != lib ]]; then
+		mv "${D}"/usr/lib "${D}"/usr/$(get_libdir) || die
+	fi
+
+	# Prevent revdep-rebuild, @preserved-rebuild breakage
+	cat > "${T}"/66plex <<-EOF
+		LDPATH=/usr/$(get_libdir)/plexmediaserver
+	EOF
+
+	doenvd "${T}"/66plex
 }

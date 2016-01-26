@@ -1,15 +1,14 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Copyright 2013-2015 François-Xavier Payet <fx.payet@tfdn.org>
-# Copyright 2015 Jonathan Vasquez <jvasquez1011@gmail.com>
-
+# Copyright 2015-2016 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
 
 inherit eutils user systemd
 
-MINOR1="1537"
-MINOR2="f38ac80"
+MINOR1="1663"
+MINOR2="7efd046"
 
 _APPNAME="plexmediaserver"
 _USERNAME="plex"
@@ -25,12 +24,13 @@ SRC_URI="
 SLOT="0"
 LICENSE="PlexMediaServer"
 RESTRICT="mirror strip"
-KEYWORDS="-* amd64"
+KEYWORDS="-* ~amd64"
 
 DEPEND="net-dns/avahi"
 RDEPEND="${DEPEND}"
 
 QA_DESKTOP_FILE="usr/share/applications/plexmediamanager.desktop"
+QA_PREBUILT="*"
 
 S="${WORKDIR}"
 
@@ -84,6 +84,8 @@ src_install() {
 	doinitd "${FILESDIR}/init.d/${PN}"
 	doconfd "${FILESDIR}/conf.d/${PN}"
 
+	_handle_multilib
+
 	# Install systemd service file
 	systemd_newunit "${INIT}" "${INIT_NAME}"
 }
@@ -93,7 +95,24 @@ pkg_postinst() {
 	elog "Plex Media Server is now installed. Please check the configuration file in /etc/plex/${_SHORTNAME} to verify the default settings."
 	elog "To start the Plex Server, run 'rc-config start plex-media-server', you will then be able to access your library at http://<ip>:32400/web/"
 	einfo ""
-	ewarn "Please note, that the URL to the library management has changed from http://<ip>:32400/manage to http://<ip>:32400/web!"
 	ewarn "If the new management interface forces you to log into myPlex and afterwards gives you an error that you need to be a"
 	ewarn "plex-pass subscriber please delete the folder WebClient.bundle inside the Plug-Ins folder found in your library!"
+}
+
+# Finds out where the library directory is for this system
+# and handles ldflags as to not break library dependencies
+# during rebuilds.
+_handle_multilib()
+{
+	# "multilib-strict" FEATURE(S) compliance
+	if [[ $(get_libdir) != lib ]]; then
+		mv "${D}"/usr/lib "${D}"/usr/$(get_libdir) || die
+	fi
+
+	# Prevent revdep-rebuild, @preserved-rebuild breakage
+	cat > "${T}"/66plex <<-EOF
+		LDPATH=/usr/$(get_libdir)/plexmediaserver
+	EOF
+
+	doenvd "${T}"/66plex
 }
