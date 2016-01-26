@@ -30,6 +30,7 @@ DEPEND="net-dns/avahi"
 RDEPEND="${DEPEND}"
 
 QA_DESKTOP_FILE="usr/share/applications/plexmediamanager.desktop"
+QA_PREBUILT="*"
 
 S="${WORKDIR}"
 
@@ -82,6 +83,17 @@ src_install() {
 	# Install the OpenRC init/conf files
 	doinitd "${FILESDIR}/init.d/${PN}"
 	doconfd "${FILESDIR}/conf.d/${PN}"
+
+	# for "multilib-strict" FEATURE(S) compliance
+	if [[ $(get_libdir) != lib ]]; then
+		mv "${D}"/usr/lib "${D}"/usr/$(get_libdir) || die
+	fi
+
+	# don't break revdep-rebuild, @preserved-rebuild, etc
+	cat > "${T}"/66plex <<-EOF
+		LDPATH=/usr/$(get_libdir)/plexmediaserver
+	EOF
+	doenvd "${T}"/66plex
 
 	# Install systemd service file
 	systemd_newunit "${INIT}" "${INIT_NAME}"
