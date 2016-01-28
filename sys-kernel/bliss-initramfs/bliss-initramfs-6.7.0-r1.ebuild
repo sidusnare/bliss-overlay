@@ -1,4 +1,4 @@
-# Copyright 2013-2015 Jonathan Vasquez <jvasquez1011@gmail.com>
+# Copyright 2013-2016 Jonathan Vasquez <jvasquez1011@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -34,6 +34,14 @@ RDEPEND="
 
 S="${WORKDIR}/${GITHUB_REPO}-${GITHUB_TAG}"
 
+src_prepare() {
+    # If udev is explictly disabled, disable it in the Udev hook
+    if ! use udev; then
+        local useUdevLine=12
+        sed -i -e "${useUdevLine}"s/1/0/ "pkg/hooks/Udev.py"
+    fi
+}
+
 src_install() {
     # Copy the main executable
     local executable="mkinitrd.py"
@@ -43,12 +51,6 @@ src_install() {
     # Copy the libraries required by this executable
     cp -r "${S}/files" "${D}/opt/${PN}"
     cp -r "${S}/pkg" "${D}/opt/${PN}"
-
-    # If udev is explictly disabled, disable it in the Udev hook
-    if ! use udev; then
-        local useUdevLine=20
-        sed -i -e "${useUdevLine}"s/1/0/ "${D}/opt/${PN}/pkg/hooks/Udev.py"
-    fi
 
     # Copy documentation files
     dodoc CHANGES README USAGE
