@@ -18,7 +18,7 @@ SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/v${GITHUB_TAG}
 RESTRICT="mirror"
 LICENSE="MPL-2.0"
 SLOT="0"
-KEYWORDS="~x86 amd64"
+KEYWORDS="~x86 ~amd64"
 
 DEPEND=">=dev-lang/go-1.4.2"
 
@@ -35,7 +35,6 @@ src_install() {
 
 	mkdir -p "${newBaseDir}"
 	mv "${P}" "${newWorkDir}"
-
 	cd "${newWorkDir}"
 
 	# Build SyncThing ;D
