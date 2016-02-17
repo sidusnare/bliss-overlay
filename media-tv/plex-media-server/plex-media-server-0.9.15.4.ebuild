@@ -7,8 +7,8 @@ EAPI=5
 
 inherit eutils user systemd
 
-MINOR1="1663"
-MINOR2="7efd046"
+MINOR1="1679"
+MINOR2="e4df231"
 
 _APPNAME="plexmediaserver"
 _USERNAME="plex"
@@ -24,13 +24,21 @@ SRC_URI="
 SLOT="0"
 LICENSE="PlexMediaServer"
 RESTRICT="mirror strip"
-KEYWORDS="-* amd64"
+KEYWORDS="-* ~amd64"
+IUSE="hardened"
 
 DEPEND="net-dns/avahi"
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	hardened? ( sys-apps/fix-gnustack )"
 
 QA_DESKTOP_FILE="usr/share/applications/plexmediamanager.desktop"
 QA_PREBUILT="*"
+
+# If 'hardened' is enabled, we need to remove the execstacked mark
+# from the following files:
+EXECSTACKED_BINS=(
+	"${D}/usr/lib64/plexmediaserver/libgnsdk_dsp.so.3.07.7"
+)
 
 S="${WORKDIR}"
 
@@ -88,9 +96,12 @@ src_install() {
 
 	# Install systemd service file
 	systemd_newunit "${INIT}" "${INIT_NAME}"
+
+	_remove_execstack_markings
 }
 
-pkg_postinst() {
+pkg_postinst()
+{
 	einfo ""
 	elog "Plex Media Server is now installed. Please check the configuration file in /etc/plex/${_SHORTNAME} to verify the default settings."
 	elog "To start the Plex Server, run 'rc-config start plex-media-server', you will then be able to access your library at http://<ip>:32400/web/"
@@ -115,4 +126,15 @@ _handle_multilib()
 	EOF
 
 	doenvd "${T}"/66plex
+}
+
+# Remove execstack flag from library so that it works in hardened setups.
+# This needs to be fixed upstream eventually.
+_remove_execstack_markings()
+{
+	if use hardened; then
+		for f in "${EXECSTACKED_BINS[@]}"; do
+			fix-gnustack -f "${f}" > /dev/null
+		done
+	fi
 }
