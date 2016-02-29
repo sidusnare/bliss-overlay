@@ -1,5 +1,5 @@
-media-tv/plex-media-server 0.9.15.2-r1 0.9.15.3 0.9.15.4: Plex Media Server is a free media library that is intended for use with a plex client available for OS X, iOS and Android systems.
-net-p2p/syncthing 0.12.18 0.12.19: Open Source Continuous File Synchronization
+media-tv/plex-media-server 0.9.15.4 0.9.15.6: Plex Media Server is a free media library that is intended for use with a plex client available for OS X, iOS and Android systems.
+net-p2p/syncthing 0.12.19: Open Source Continuous File Synchronization
 sys-boot/bliss-boot 2.1.2: Bootloader Configuration and Installation Utility
 sys-fs/zfs 0.6.5.3 0.6.5.4: Userland utilities for ZFS Linux kernel module
 sys-fs/zfs-kmod 0.6.5.3 0.6.5.4: Linux ZFS kernel module for sys-fs/zfs
