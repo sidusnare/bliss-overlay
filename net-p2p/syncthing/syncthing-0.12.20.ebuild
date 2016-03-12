@@ -18,9 +18,9 @@ SRC_URI="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/archive/v${GITHUB_TAG}
 RESTRICT="mirror"
 LICENSE="MPL-2.0"
 SLOT="0"
-KEYWORDS="~x86 amd64"
+KEYWORDS="~x86 ~amd64"
 
-DEPEND=">=dev-lang/go-1.4.2"
+DEPEND=">=dev-lang/go-1.6"
 
 S="${WORKDIR}"
 
@@ -48,11 +48,9 @@ src_install() {
 	doconfd "${FILESDIR}/conf.d/${NAME}"
 
 	# Install the systemd service files
-	local systemdServiceFile="etc/linux-systemd/system/${PN}@.service"
-	systemd_dounit "${systemdServiceFile}"
-
-	local systemdUserFile="etc/linux-systemd/user/${PN}.service"
-	systemd_dounit "${systemdUserFile}"
+	systemd_dounit "etc/linux-systemd/system/${PN}@.service"
+	systemd_dounit "etc/linux-systemd/user/${PN}.service"
+	systemd_dounit "etc/linux-systemd/system/${PN}-resume.service"
 }
 
 pkg_postinst() {
