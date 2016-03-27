@@ -1,11 +1,10 @@
-media-tv/plex-media-server 0.9.15.4 0.9.15.6: Plex Media Server is a free media library that is intended for use with a plex client available for OS X, iOS and Android systems.
-net-p2p/syncthing 0.12.20: Open Source Continuous File Synchronization
-sys-boot/bliss-boot 2.1.2: Bootloader Configuration and Installation Utility
+media-tv/plex-media-server 0.9.15.6 0.9.16.3: Plex Media Server is a free media library that is intended for use with a plex client available for OS X, iOS and Android systems.
+net-p2p/syncthing 0.12.20 0.12.21: Open Source Continuous File Synchronization
 sys-fs/zfs 0.6.5.4 0.6.5.6: Userland utilities for ZFS Linux kernel module
 sys-fs/zfs-kmod 0.6.5.4 0.6.5.6: Linux ZFS kernel module for sys-fs/zfs
 sys-kernel/alt-sources 4.1.15: Kernel Sources and Patches for the System Rescue CD Alternate Kernel
 sys-kernel/bliss-initramfs 6.7.0-r1: Boot your system's rootfs from ZFS, LVM, RAID, or a variety of other configs.
-sys-kernel/bliss-kernel 4.1.16 4.4.2: Precompiled Vanilla Kernel (Kernel Ready-to-Eat [KRE])
+sys-kernel/bliss-kernel 4.4.2: Precompiled Vanilla Kernel (Kernel Ready-to-Eat [KRE])
 sys-kernel/spl 0.6.5.4 0.6.5.6: The Solaris Porting Layer is a Linux kernel module which provides many of the Solaris kernel APIs
 sys-kernel/std-sources 3.18.25: Kernel Sources and Patches for the System Rescue CD Standard Kernel
 virtual/linux-sources 0 1: Virtual for Linux kernel sources

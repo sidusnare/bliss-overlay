@@ -2,9 +2,6 @@
 # Please add your descriptions to your package's metadata.xml ONLY.
 # * generated automatically using pmaint *
 
-sys-boot/bliss-boot:extlinux - extlinux support
-sys-boot/bliss-boot:gpt - Ability to create, delete, and/or modify a GPT layout.
-sys-boot/bliss-boot:grub2 - GRUB 2 support
 sys-fs/zfs:kernel-builtin - Disable dependency on sys-fs/zfs-kmod under the assumption that ZFS is part of the kernel source tree
 sys-fs/zfs:rootfs - Enable dependencies required for booting off a pool containing a rootfs
 sys-fs/zfs:test-suite - Install regression test suite
