@@ -10,7 +10,6 @@ _LV="FC.01"                     # Local Version
 _PLV="${PV}-${_LV}"             # Package Version + Local Version (Module Dir)
 _KN="linux-${_PLV}"             # Kernel Directory Name
 _KD="/usr/src/${_KN}"           # Kernel Directory
-_CONF="xyinn.conf"              # Blacklisted Kernel Modules
 _BD="/boot/kernels/${_PLV}"     # Kernel /boot Directory
 
 # Main
@@ -53,10 +52,6 @@ src_install()
     # Install Headers
     dodir /usr/src
     cp -r "${S}/headers/${_KN}" "${D}/usr/src"
-
-    # Install Blacklist
-    insinto /etc/modprobe.d
-    doins "${S}/modules/${_CONF}"
 }
 
 pkg_postinst()
